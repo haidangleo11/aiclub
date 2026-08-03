@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CLB Trí tuệ Nhân tạo - THPT Chuyên Hoàng Văn Thụ</title>
+    <style>
+        /* CSS Reset & Variables */
+        :root {
+            --primary-blue: #022b6b; /* Màu xanh đậm từ viền logo */
+            --light-blue: #0073e6; /* Màu xanh sáng từ chữ AI */
+            --accent-yellow: #f1c40f; /* Màu vàng từ logo trường */
+            --bg-light: #f4f7f6;
+            --text-dark: #333333;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* Header & Navigation */
+        header {
+            background: var(--white);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 10px 20px;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+        }
+
+        .logo-container img {
+            height: 75px; 
+            width: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .logo-container:hover img {
+            transform: scale(1.05);
+        }
+
+        .logo-text h1 {
+            font-size: 1.3rem;
+            color: var(--primary-blue);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 2px;
+        }
+
+        .logo-text p {
+            font-size: 0.85rem;
+            color: var(--light-blue);
+            font-weight: 600;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--primary-blue);
+            font-weight: 600;
+            font-size: 1rem;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        nav a:not(.btn-nav)::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--light-blue);
+            transition: width 0.3s;
+        }
+
+        nav a:not(.btn-nav):hover {
+            color: var(--light-blue);
+        }
+
+        nav a:not(.btn-nav):hover::after {
+            width: 100%;
+        }
+
+        /* Nút đăng ký trên menu */
+        .btn-nav {
+            background: var(--light-blue);
+            color: var(--white) !important;
+            padding: 8px 18px;
+            border-radius: 20px;
+            transition: all 0.3s ease !important;
+        }
+
+        .btn-nav:hover {
+            background: var(--primary-blue);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, rgba(2,43,107,0.95), rgba(0,115,230,0.85)), url('https://www.transparenttextures.com/patterns/cubes.png');
+            color: var(--white);
+            text-align: center;
+            padding: 120px 20px;
+            position: relative;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h2 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            opacity: 0.95;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 35px;
+            background: var(--accent-yellow);
+            color: var(--primary-blue);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            border-radius: 30px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(241, 196, 15, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(241, 196, 15, 0.5);
+            background: #fdf020;
+        }
+
+        /* Sections */
+        .section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            color: var(--primary-blue);
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            position: relative;
+            text-transform: uppercase;
+        }
+
+        .section-title::after {
+            content: '';
+            width: 80px;
+            height: 4px;
+            background: var(--light-blue);
+            display: block;
+            margin: 15px auto 0;
+            border-radius: 2px;
+        }
+
+        /* Features/Activities Grid */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: var(--white);
+            padding: 40px 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            text-align: center;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            border-bottom: 5px solid var(--light-blue);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(135deg, rgba(0,115,230,0.05), transparent);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+
+        .card:hover::before {
+            opacity: 1;
+        }
+
+        .card-icon {
+            font-size: 50px;
+            margin-bottom: 20px;
+        }
+
+        .card h3 {
+            margin-bottom: 15px;
+            color: var(--primary-blue);
+            font-size: 1.4rem;
+        }
+
+        .card p {
+            color: #666;
+        }
+
+        /* Khung Đăng Ký Tuyển Thành Viên */
+        .recruitment-card {
+            background: linear-gradient(135deg, var(--primary-blue), var(--light-blue));
+            color: var(--white);
+            border-radius: 20px;
+            padding: 50px 30px;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(2, 43, 107, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .recruitment-card h2 {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+        }
+
+        .recruitment-card p {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            opacity: 0.95;
+        }
+
+        .btn-pulse {
+            animation: pulse-animation 2s infinite;
+        }
+
+        @keyframes pulse-animation {
+            0% {
+                box-shadow: 0 0 0 0 rgba(241, 196, 15, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 15px rgba(241, 196, 15, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(241, 196, 15, 0);
+            }
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary-blue);
+            color: var(--white);
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 50px;
+            border-top: 5px solid var(--accent-yellow);
+        }
+
+        footer h4 {
+            margin-bottom: 15px;
+            color: var(--accent-yellow);
+        }
+
+        footer p {
+            opacity: 0.8;
+            margin-bottom: 5px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .hero h2 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo-container">
+                <img src="icon.png" alt="Logo CLB Trí tuệ Nhân tạo">
+                <div class="logo-text">
+                    <h1>CLB Trí tuệ Nhân tạo</h1>
+                    <p>THPT Chuyên Hoàng Văn Thụ</p>
+                </div>
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="#trang-chu">Trang chủ</a></li>
+                    <li><a href="#gioi-thieu">Giới thiệu</a></li>
+                    <li><a href="#hoat-dong">Hoạt động</a></li>
+                    <li><a href="#dang-ky">Đăng ký</a></li>
+                    <li><a href="https://forms.gle/GeAU2zZeuhHW5mfy9" target="_blank" class="btn-nav">Đăng ký ngay 🚀</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Banner Section -->
+    <section id="trang-chu" class="hero">
+        <div class="hero-content">
+            <h2>Khơi Nguồn Đam Mê<br>Dẫn Đầu Kỷ Nguyên AI</h2>
+            <p>Nơi hội tụ, giao lưu và phát triển những tài năng công nghệ trẻ tuổi tại Trường THPT Chuyên Hoàng Văn Thụ, tỉnh Phú Thọ.</p>
+            <!-- Link Form Đăng Ký ở nút chính -->
+            <a href="https://forms.gle/GeAU2zZeuhHW5mfy9" target="_blank" class="btn btn-pulse">Gia nhập CLB ngay</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="gioi-thieu" class="section">
+        <h2 class="section-title">Về Chúng Tôi</h2>
+        <div style="text-align: center; max-width: 900px; margin: 0 auto; font-size: 1.15rem; color: #555;">
+            <p><strong>Câu lạc bộ Trí tuệ Nhân tạo (AI Club)</strong> của THPT Chuyên Hoàng Văn Thụ được thành lập với sứ mệnh tạo ra một sân chơi học thuật bổ ích, sáng tạo. Lấy hình ảnh mạng nơ-ron và bo mạch làm biểu tượng, chúng tôi không ngừng kết nối các tư duy nhạy bén, hướng tới việc nghiên cứu, ứng dụng Khoa học Máy tính và AI vào thực tiễn.</p>
+        </div>
+    </section>
+
+    <!-- Activities Section -->
+    <section id="hoat-dong" class="section" style="background-color: var(--white); max-width: 100%; padding-left: 5%; padding-right: 5%;">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <h2 class="section-title">Lĩnh Vực Hoạt Động</h2>
+            <div class="features">
+                <div class="card">
+                    <div class="card-icon">🧠</div>
+                    <h3>Machine Learning & AI</h3>
+                    <p>Tìm hiểu và thực hành các thuật toán học máy, mạng nơ-ron nhân tạo, xử lý ngôn ngữ tự nhiên và thị giác máy tính.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">💻</div>
+                    <h3>Lập Trình & Thuật Toán</h3>
+                    <p>Nâng cao tư duy logic thông qua các nền tảng ngôn ngữ lập trình như Python, C++ và tham gia các cuộc thi lập trình thi đấu, Hackathon.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🤖</div>
+                    <h3>Robotics & IoT</h3>
+                    <p>Thiết kế, lắp ráp và lập trình robot điều khiển tự động. Nghiên cứu các ứng dụng Internet of Things (IoT) thông minh.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recruitment Section -->
+    <section id="dang-ky" class="section">
+        <div class="recruitment-card">
+            <h2>Tuyển Thành Viên CLB Trí Tuệ Nhân Tạo</h2>
+            <p>Bạn yêu thích công nghệ, muốn học hỏi về AI hay đơn giản là tìm kiếm những người bạn cùng chung đam mê? Hãy nhanh tay điền đơn đăng ký để trở thành một phần của gia đình HVT AI Club!</p>
+            <!-- Link Form Đăng Ký -->
+            <a href="https://forms.gle/GeAU2zZeuhHW5mfy9" target="_blank" class="btn">Điền Form Đăng Ký Ngay</a>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer id="lien-he">
+        <h4>Câu lạc bộ Trí tuệ Nhân tạo - THPT Chuyên Hoàng Văn Thụ</h4>
+        <p>&copy; 2026 HVT AI Club. Tự hào được sáng lập bởi học sinh Chuyên Hoàng Văn Thụ.</p>
+        <p style="margin-top: 15px; font-size: 0.95rem;">
+            📍 Đường Hoàng Văn Thụ, Phường Hòa Bình, Phú Thọ<br>
+            📧 Email: clbtrituenhantao.hvt@gmail.com | 🌐 Fanpage: https://www.facebook.com/profile.php?id=61557457271958
+        </p>
+    </footer>
+
+</body>
+</html>
