@@ -1,420 +1,1159 @@
 <!DOCTYPE html>
-<html lang="vi">
-<head>
+<html lang="vi"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CLB Trí tuệ Nhân tạo - THPT Chuyên Hoàng Văn Thụ</title>
+    <meta name="description" content="HVT AI Club - Câu lạc bộ Trí tuệ Nhân tạo tại THPT Chuyên Hoàng Văn Thụ. Tuyển đội ngũ nòng cốt ở các ban Kỹ thuật, Truyền thông và Thiết kế.">
+    <meta name="theme-color" content="#062d70">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="HVT AI Club | Xây nền tảng AI, tạo tác động thật">
+    <meta property="og:description" content="Tham gia đội ngũ nòng cốt HVT AI Club và cùng học hỏi, xây dựng dự án AI, truyền thông, thiết kế và hoạt động công nghệ.">
+    <meta property="og:image" content="icon.png">
+    <meta property="og:locale" content="vi_VN">
+    <link rel="icon" type="image/png" href="icon.png">
+    <title>HVT AI Club | Câu lạc bộ Trí tuệ Nhân tạo</title>
+
     <style>
-        /* CSS Reset & Variables */
         :root {
-            --primary-blue: #022b6b; /* Màu xanh đậm từ viền logo */
-            --light-blue: #0073e6; /* Màu xanh sáng từ chữ AI */
-            --accent-yellow: #f1c40f; /* Màu vàng từ logo trường */
-            --bg-light: #f4f7f6;
-            --text-dark: #333333;
+            --navy: #062d70;
+            --blue: #087bdc;
+            --blue-dark: #0458aa;
+            --yellow: #ffc928;
+            --yellow-dark: #e6ab00;
+            --ink: #17243d;
+            --muted: #5f6b7e;
+            --surface: #f5f8fc;
             --white: #ffffff;
+            --line: #dfe8f3;
+            --shadow: 0 18px 45px rgba(8, 45, 112, 0.11);
+            --radius: 22px;
+            --header-height: 82px;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
+        *,
+        *::before,
+        *::after {
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        html {
             scroll-behavior: smooth;
+            scroll-padding-top: calc(var(--header-height) + 20px);
         }
 
         body {
-            background-color: var(--bg-light);
-            color: var(--text-dark);
-            line-height: 1.6;
+            margin: 0;
+            color: var(--ink);
+            background: var(--surface);
+            font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            line-height: 1.65;
         }
 
-        /* Header & Navigation */
-        header {
-            background: var(--white);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        body.menu-open {
+            overflow: hidden;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+        }
+
+        :focus-visible {
+            outline: 3px solid var(--yellow);
+            outline-offset: 4px;
+        }
+
+        .container {
+            width: min(1160px, calc(100% - 40px));
+            margin: 0 auto;
+        }
+
+        .skip-link {
+            position: fixed;
+            left: 16px;
+            top: -60px;
+            z-index: 2000;
+            padding: 10px 16px;
+            color: var(--navy);
+            background: var(--yellow);
+            border-radius: 10px;
+            font-weight: 800;
+            text-decoration: none;
+            transition: top 0.2s ease;
+        }
+
+        .skip-link:focus {
+            top: 16px;
+        }
+
+        .site-header {
             position: sticky;
             top: 0;
             z-index: 1000;
+            min-height: var(--header-height);
+            background: rgba(255, 255, 255, 0.96);
+            border-bottom: 1px solid rgba(223, 232, 243, 0.9);
+            box-shadow: 0 5px 22px rgba(8, 45, 112, 0.07);
+            backdrop-filter: blur(12px);
         }
 
-        .nav-container {
+        .nav-wrap {
             display: flex;
+            align-items: center;
             justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 10px 20px;
+            min-height: var(--header-height);
+            gap: 24px;
         }
 
-        .logo-container {
-            display: flex;
+        .brand {
+            display: inline-flex;
             align-items: center;
-            gap: 15px;
+            gap: 12px;
+            color: var(--navy);
             text-decoration: none;
         }
 
-        .logo-container img {
-            height: 75px; 
-            width: auto;
-            transition: transform 0.3s ease;
+        .brand img {
+            width: 58px;
+            height: 58px;
+            object-fit: contain;
         }
 
-        .logo-container:hover img {
-            transform: scale(1.05);
+        .brand-copy strong,
+        .brand-copy span {
+            display: block;
         }
 
-        .logo-text h1 {
-            font-size: 1.3rem;
-            color: var(--primary-blue);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 2px;
-        }
-
-        .logo-text p {
-            font-size: 0.85rem;
-            color: var(--light-blue);
-            font-weight: 600;
-        }
-
-        nav ul {
-            list-style: none;
-            display: flex;
-            align-items: center;
-            gap: 25px;
-        }
-
-        nav a {
-            text-decoration: none;
-            color: var(--primary-blue);
-            font-weight: 600;
-            font-size: 1rem;
-            transition: color 0.3s;
-            position: relative;
-        }
-
-        nav a:not(.btn-nav)::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -5px;
-            left: 0;
-            background-color: var(--light-blue);
-            transition: width 0.3s;
-        }
-
-        nav a:not(.btn-nav):hover {
-            color: var(--light-blue);
-        }
-
-        nav a:not(.btn-nav):hover::after {
-            width: 100%;
-        }
-
-        /* Nút đăng ký trên menu */
-        .btn-nav {
-            background: var(--light-blue);
-            color: var(--white) !important;
-            padding: 8px 18px;
-            border-radius: 20px;
-            transition: all 0.3s ease !important;
-        }
-
-        .btn-nav:hover {
-            background: var(--primary-blue);
-            transform: translateY(-2px);
-        }
-
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, rgba(2,43,107,0.95), rgba(0,115,230,0.85)), url('https://www.transparenttextures.com/patterns/cubes.png');
-            color: var(--white);
-            text-align: center;
-            padding: 120px 20px;
-            position: relative;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 1;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .hero h2 {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+        .brand-copy strong {
+            font-size: 1.04rem;
+            letter-spacing: 0.055em;
             line-height: 1.2;
         }
 
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 40px;
-            opacity: 0.95;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 15px 35px;
-            background: var(--accent-yellow);
-            color: var(--primary-blue);
-            text-decoration: none;
+        .brand-copy span {
+            margin-top: 4px;
+            color: var(--blue);
+            font-size: 0.76rem;
             font-weight: 700;
-            font-size: 1.1rem;
-            border-radius: 30px;
-            text-transform: uppercase;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(241, 196, 15, 0.3);
         }
 
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(241, 196, 15, 0.5);
-            background: #fdf020;
-        }
-
-        /* Sections */
-        .section {
-            padding: 80px 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            text-align: center;
-            color: var(--primary-blue);
-            font-size: 2.5rem;
-            margin-bottom: 50px;
-            position: relative;
-            text-transform: uppercase;
-        }
-
-        .section-title::after {
-            content: '';
-            width: 80px;
-            height: 4px;
-            background: var(--light-blue);
-            display: block;
-            margin: 15px auto 0;
-            border-radius: 2px;
-        }
-
-        /* Features/Activities Grid */
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .card {
-            background: var(--white);
-            padding: 40px 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            text-align: center;
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
-            border-bottom: 5px solid var(--light-blue);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: linear-gradient(135deg, rgba(0,115,230,0.05), transparent);
-            opacity: 0;
-            transition: opacity 0.4s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
-        }
-
-        .card:hover::before {
-            opacity: 1;
-        }
-
-        .card-icon {
-            font-size: 50px;
-            margin-bottom: 20px;
-        }
-
-        .card h3 {
-            margin-bottom: 15px;
-            color: var(--primary-blue);
+        .menu-toggle {
+            display: none;
+            width: 44px;
+            height: 44px;
+            color: var(--navy);
+            background: transparent;
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            cursor: pointer;
             font-size: 1.4rem;
         }
 
-        .card p {
-            color: #666;
+        .site-nav ul {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            margin: 0;
+            padding: 0;
+            list-style: none;
         }
 
-        /* Khung Đăng Ký Tuyển Thành Viên */
-        .recruitment-card {
-            background: linear-gradient(135deg, var(--primary-blue), var(--light-blue));
+        .site-nav a {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            min-height: 42px;
+            color: var(--navy);
+            font-size: 0.94rem;
+            font-weight: 750;
+            text-decoration: none;
+        }
+
+        .site-nav a:not(.nav-cta)::after {
+            position: absolute;
+            right: 0;
+            bottom: 4px;
+            left: 0;
+            height: 2px;
+            background: var(--blue);
+            content: "";
+            transform: scaleX(0);
+            transform-origin: center;
+            transition: transform 0.2s ease;
+        }
+
+        .site-nav a:not(.nav-cta):hover::after,
+        .site-nav a:not(.nav-cta):focus-visible::after {
+            transform: scaleX(1);
+        }
+
+        .nav-cta,
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            border: 0;
+            border-radius: 999px;
+            font-weight: 850;
+            text-decoration: none;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+        }
+
+        .nav-cta {
+            padding: 10px 17px;
+            color: var(--white) !important;
+            background: var(--blue);
+        }
+
+        .nav-cta:hover,
+        .button:hover {
+            transform: translateY(-2px);
+        }
+
+        .hero {
+            position: relative;
+            overflow: hidden;
             color: var(--white);
-            border-radius: 20px;
-            padding: 50px 30px;
+            background:
+                radial-gradient(circle at 14% 20%, rgba(255, 201, 40, 0.18), transparent 24%),
+                radial-gradient(circle at 90% 85%, rgba(8, 123, 220, 0.75), transparent 34%),
+                linear-gradient(135deg, #062d70 0%, #075bb4 58%, #087bdc 100%);
+        }
+
+        .hero::before,
+        .hero::after {
+            position: absolute;
+            border: 1px solid rgba(255, 255, 255, 0.13);
+            border-radius: 50%;
+            content: "";
+        }
+
+        .hero::before {
+            top: -150px;
+            right: -80px;
+            width: 440px;
+            height: 440px;
+        }
+
+        .hero::after {
+            bottom: -210px;
+            left: -100px;
+            width: 500px;
+            height: 500px;
+        }
+
+        .hero-inner {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: minmax(0, 1.15fr) minmax(270px, 0.85fr);
+            align-items: center;
+            gap: 70px;
+            min-height: 610px;
+            padding: 88px 0;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin: 0 0 18px;
+            color: var(--yellow);
+            font-size: 0.78rem;
+            font-weight: 900;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .eyebrow::before {
+            width: 26px;
+            height: 3px;
+            background: currentColor;
+            border-radius: 3px;
+            content: "";
+        }
+
+        .hero h1 {
+            max-width: 760px;
+            margin: 0;
+            font-size: clamp(2.55rem, 5vw, 4.7rem);
+            letter-spacing: -0.04em;
+            line-height: 1.05;
+        }
+
+        .hero h1 span {
+            color: var(--yellow);
+        }
+
+        .hero-lead {
+            max-width: 680px;
+            margin: 24px 0 30px;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: clamp(1rem, 2vw, 1.18rem);
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .button {
+            min-height: 50px;
+            padding: 13px 22px;
+            font-size: 0.96rem;
+        }
+
+        .button-primary {
+            color: var(--navy);
+            background: var(--yellow);
+            box-shadow: 0 11px 24px rgba(255, 201, 40, 0.25);
+        }
+
+        .button-primary:hover {
+            background: #ffda55;
+            box-shadow: 0 15px 30px rgba(255, 201, 40, 0.34);
+        }
+
+        .button-secondary {
+            color: var(--white);
+            background: rgba(255, 255, 255, 0.11);
+            border: 1px solid rgba(255, 255, 255, 0.35);
+        }
+
+        .button-secondary:hover {
+            background: rgba(255, 255, 255, 0.19);
+        }
+
+        .hero-card {
+            padding: 28px;
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.24);
+            border-radius: var(--radius);
+            box-shadow: 0 20px 60px rgba(0, 25, 75, 0.2);
+            backdrop-filter: blur(12px);
+        }
+
+        .hero-card h2 {
+            margin: 0 0 18px;
+            font-size: 1.35rem;
+        }
+
+        .hero-card ul,
+        .check-list {
+            display: grid;
+            gap: 12px;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .hero-card li,
+        .check-list li {
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+        }
+
+        .hero-card li::before,
+        .check-list li::before {
+            flex: 0 0 auto;
+            color: var(--yellow);
+            content: "✓";
+            font-weight: 900;
+        }
+
+        .stat-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-top: 26px;
+        }
+
+        .stat {
+            padding: 16px 12px;
+            background: rgba(0, 22, 72, 0.22);
+            border: 1px solid rgba(255, 255, 255, 0.13);
+            border-radius: 16px;
             text-align: center;
-            box-shadow: 0 15px 35px rgba(2, 43, 107, 0.2);
+        }
+
+        .stat strong,
+        .stat span {
+            display: block;
+        }
+
+        .stat strong {
+            color: var(--yellow);
+            font-size: 1.35rem;
+        }
+
+        .stat span {
+            color: rgba(255, 255, 255, 0.82);
+            font-size: 0.77rem;
+        }
+
+        .section {
+            scroll-margin-top: calc(var(--header-height) + 20px);
+            padding: 90px 0;
+        }
+
+        .section-white {
+            background: var(--white);
+        }
+
+        .section-heading {
+            max-width: 740px;
+            margin: 0 auto 44px;
+            text-align: center;
+        }
+
+        .section-heading h2 {
+            margin: 0 0 14px;
+            color: var(--navy);
+            font-size: clamp(2rem, 4vw, 2.9rem);
+            letter-spacing: -0.03em;
+            line-height: 1.12;
+        }
+
+        .section-heading p {
+            margin: 0;
+            color: var(--muted);
+        }
+
+        .section-kicker {
+            margin: 0 0 8px;
+            color: var(--blue);
+            font-size: 0.78rem;
+            font-weight: 900;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .about-grid,
+        .recruitment-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 28px;
+            align-items: stretch;
+        }
+
+        .content-card,
+        .role-card,
+        .step-card,
+        .faq-item,
+        .activity-card {
+            background: var(--white);
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+
+        .content-card {
+            padding: 32px;
+        }
+
+        .content-card h3 {
+            margin: 0 0 14px;
+            color: var(--navy);
+            font-size: 1.35rem;
+        }
+
+        .content-card p {
+            margin: 0 0 18px;
+            color: var(--muted);
+        }
+
+        .content-card p:last-child {
+            margin-bottom: 0;
+        }
+
+        .about-highlight {
+            color: var(--white);
+            background: linear-gradient(145deg, var(--navy), var(--blue-dark));
+            border: 0;
+        }
+
+        .about-highlight h3,
+        .about-highlight p {
+            color: var(--white);
+        }
+
+        .about-highlight p {
+            opacity: 0.86;
+        }
+
+        .check-list li {
+            color: inherit;
+        }
+
+        .roles-grid,
+        .activities-grid,
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 20px;
+        }
+
+        .role-card,
+        .activity-card,
+        .step-card {
+            padding: 28px;
+        }
+
+        .role-icon {
+            display: grid;
+            width: 52px;
+            height: 52px;
+            place-items: center;
+            margin-bottom: 20px;
+            color: var(--blue);
+            background: #eaf5ff;
+            border-radius: 15px;
+            font-size: 1.55rem;
+        }
+
+        .role-card h3,
+        .activity-card h3,
+        .step-card h3 {
+            margin: 0 0 10px;
+            color: var(--navy);
+            font-size: 1.2rem;
+        }
+
+        .role-card p,
+        .activity-card p,
+        .step-card p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+
+        .role-card strong {
+            display: inline-block;
+            margin-top: 17px;
+            padding: 5px 10px;
+            color: var(--blue-dark);
+            background: #eaf5ff;
+            border-radius: 999px;
+            font-size: 0.78rem;
+        }
+
+        .activity-card {
             position: relative;
             overflow: hidden;
         }
 
-        .recruitment-card h2 {
-            font-size: 2.2rem;
-            margin-bottom: 15px;
+        .activity-card::before {
+            position: absolute;
+            top: 0;
+            right: 0;
+            left: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--blue), var(--yellow));
+            content: "";
         }
 
-        .recruitment-card p {
-            font-size: 1.1rem;
-            max-width: 700px;
-            margin: 0 auto 30px;
-            opacity: 0.95;
+        .activity-label {
+            display: inline-block;
+            margin-bottom: 19px;
+            color: var(--blue);
+            font-size: 0.75rem;
+            font-weight: 900;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
         }
 
-        .btn-pulse {
-            animation: pulse-animation 2s infinite;
+        .step-card {
+            position: relative;
+            padding-top: 62px;
         }
 
-        @keyframes pulse-animation {
-            0% {
-                box-shadow: 0 0 0 0 rgba(241, 196, 15, 0.7);
-            }
-            70% {
-                box-shadow: 0 0 0 15px rgba(241, 196, 15, 0);
-            }
-            100% {
-                box-shadow: 0 0 0 0 rgba(241, 196, 15, 0);
-            }
+        .step-number {
+            position: absolute;
+            top: 22px;
+            left: 28px;
+            display: grid;
+            width: 30px;
+            height: 30px;
+            place-items: center;
+            color: var(--navy);
+            background: var(--yellow);
+            border-radius: 50%;
+            font-weight: 900;
         }
 
-        /* Footer */
-        footer {
-            background: var(--primary-blue);
+        .recruitment-section {
+            background: linear-gradient(180deg, var(--surface), #eaf3ff);
+        }
+
+        .recruitment-banner {
+            padding: 46px;
             color: var(--white);
-            text-align: center;
-            padding: 40px 20px;
-            margin-top: 50px;
-            border-top: 5px solid var(--accent-yellow);
+            background: linear-gradient(135deg, var(--navy), var(--blue));
+            border-radius: 28px;
+            box-shadow: 0 22px 55px rgba(8, 45, 112, 0.2);
         }
 
-        footer h4 {
-            margin-bottom: 15px;
-            color: var(--accent-yellow);
+        .recruitment-banner h2 {
+            max-width: 760px;
+            margin: 0 0 12px;
+            font-size: clamp(1.8rem, 3vw, 2.65rem);
+            letter-spacing: -0.03em;
+            line-height: 1.12;
         }
 
-        footer p {
-            opacity: 0.8;
-            margin-bottom: 5px;
+        .recruitment-banner > p {
+            max-width: 760px;
+            margin: 0 0 28px;
+            color: rgba(255, 255, 255, 0.86);
         }
-        
-        /* Responsive */
-        @media (max-width: 768px) {
-            .nav-container {
-                flex-direction: column;
-                gap: 15px;
+
+        .recruitment-grid {
+            margin-top: 26px;
+        }
+
+        .role-card-light {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: none;
+        }
+
+        .role-card-light h3,
+        .role-card-light p {
+            color: var(--white);
+        }
+
+        .role-card-light strong {
+            color: var(--navy);
+            background: var(--yellow);
+        }
+
+        .faq-list {
+            display: grid;
+            gap: 13px;
+            max-width: 860px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            padding: 20px 24px;
+        }
+
+        .faq-item summary {
+            color: var(--navy);
+            cursor: pointer;
+            font-weight: 800;
+        }
+
+        .faq-item p {
+            margin: 12px 0 0;
+            color: var(--muted);
+        }
+
+        .contact-panel {
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 28px;
+            align-items: center;
+            padding: 34px;
+            color: var(--white);
+            background: var(--navy);
+            border-radius: var(--radius);
+        }
+
+        .contact-panel h2 {
+            margin: 0 0 10px;
+            font-size: 1.8rem;
+        }
+
+        .contact-panel p {
+            margin: 0;
+            color: rgba(255, 255, 255, 0.78);
+        }
+
+        .contact-links {
+            display: grid;
+            gap: 10px;
+        }
+
+        .contact-links a {
+            color: var(--white);
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .contact-links a:hover {
+            color: var(--yellow);
+        }
+
+        .site-footer {
+            padding: 34px 0 26px;
+            color: rgba(255, 255, 255, 0.76);
+            background: #031c48;
+        }
+
+        .footer-grid {
+            display: flex;
+            justify-content: space-between;
+            gap: 30px;
+            align-items: flex-start;
+        }
+
+        .footer-brand strong,
+        .footer-brand span {
+            display: block;
+        }
+
+        .footer-brand strong {
+            color: var(--white);
+        }
+
+        .footer-brand span {
+            margin-top: 4px;
+            font-size: 0.87rem;
+        }
+
+        .footer-social {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+        }
+
+        .footer-social a {
+            color: var(--yellow);
+            font-weight: 800;
+            text-decoration: none;
+        }
+
+        .copyright {
+            margin: 25px 0 0;
+            padding-top: 18px;
+            border-top: 1px solid rgba(255, 255, 255, 0.13);
+            font-size: 0.86rem;
+        }
+
+        .mobile-apply {
+            display: none;
+        }
+
+        @media (max-width: 960px) {
+            .hero-inner {
+                grid-template-columns: 1fr;
+                gap: 34px;
+                min-height: auto;
+                padding: 80px 0;
             }
-            nav ul {
-                flex-wrap: wrap;
+
+            .hero-card {
+                max-width: 620px;
+            }
+
+            .roles-grid,
+            .activities-grid,
+            .steps-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 760px) {
+            :root {
+                --header-height: 72px;
+            }
+
+            .container {
+                width: min(100% - 32px, 620px);
+            }
+
+            .brand img {
+                width: 48px;
+                height: 48px;
+            }
+
+            .brand-copy strong {
+                font-size: 0.84rem;
+            }
+
+            .brand-copy span {
+                font-size: 0.68rem;
+            }
+
+            .menu-toggle {
+                display: inline-grid;
+                place-items: center;
+            }
+
+            .site-nav {
+                position: fixed;
+                inset: var(--header-height) 0 auto 0;
+                padding: 16px;
+                background: var(--white);
+                border-bottom: 1px solid var(--line);
+                box-shadow: 0 18px 30px rgba(8, 45, 112, 0.12);
+                opacity: 0;
+                pointer-events: none;
+                transform: translateY(-10px);
+                transition: opacity 0.2s ease, transform 0.2s ease;
+            }
+
+            .site-nav.is-open {
+                opacity: 1;
+                pointer-events: auto;
+                transform: translateY(0);
+            }
+
+            .site-nav ul {
+                display: grid;
+                gap: 5px;
+            }
+
+            .site-nav a {
+                display: flex;
                 justify-content: center;
+                width: 100%;
+                min-height: 46px;
             }
-            .hero h2 {
-                font-size: 2.5rem;
+
+            .site-nav a:not(.nav-cta)::after {
+                display: none;
+            }
+
+            .hero-inner {
+                padding: 62px 0 72px;
+            }
+
+            .hero h1 {
+                max-width: 560px;
+                font-size: clamp(2.35rem, 11vw, 3.4rem);
+            }
+
+            .hero-lead {
+                margin-top: 18px;
+            }
+
+            .hero-actions .button {
+                width: 100%;
+            }
+
+            .stat-row {
+                grid-template-columns: 1fr;
+            }
+
+            .section {
+                padding: 68px 0;
+            }
+
+            .about-grid,
+            .recruitment-grid,
+            .contact-panel {
+                grid-template-columns: 1fr;
+            }
+
+            .roles-grid,
+            .activities-grid,
+            .steps-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .content-card,
+            .role-card,
+            .activity-card,
+            .step-card,
+            .recruitment-banner,
+            .contact-panel {
+                padding: 24px;
+            }
+
+            .footer-grid {
+                display: grid;
+                gap: 18px;
+            }
+
+            .mobile-apply {
+                position: fixed;
+                right: 16px;
+                bottom: 16px;
+                left: 16px;
+                z-index: 900;
+                display: inline-flex;
+                box-shadow: 0 12px 28px rgba(8, 45, 112, 0.22);
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                transition-duration: 0.01ms !important;
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
             }
         }
     </style>
 </head>
-<body>
 
-    <!-- Header Section -->
-    <header>
-        <div class="nav-container">
-            <a href="#" class="logo-container">
-                <img src="icon.png" alt="Logo CLB Trí tuệ Nhân tạo">
-                <div class="logo-text">
-                    <h1>Câu lạc bộ Trí tuệ Nhân tạo</h1>
-                    <p>THPT Chuyên Hoàng Văn Thụ</p>
-                </div>
+<body>
+    <a class="skip-link" href="#noi-dung">Bỏ qua đến nội dung chính</a>
+
+    <header class="site-header">
+        <div class="container nav-wrap">
+            <a class="brand" href="#trang-chu" aria-label="Về trang chủ HVT AI Club">
+                <img src="icon.png" width="58" height="58" alt="Logo HVT AI Club">
+                <span class="brand-copy">
+                    <strong>HVT AI CLUB</strong>
+                    <span>THPT Chuyên Hoàng Văn Thụ</span>
+                </span>
             </a>
-            <nav>
+
+            <button class="menu-toggle" type="button" aria-label="Mở menu" aria-controls="site-nav" aria-expanded="false">☰</button>
+
+            <nav id="site-nav" class="site-nav" aria-label="Điều hướng chính">
                 <ul>
-                    <li><a href="#trang-chu">Trang chủ</a></li>
                     <li><a href="#gioi-thieu">Giới thiệu</a></li>
-                    <li><a href="#hoat-dong">Hoạt động</a></li>
-                    <li><a href="#dang-ky">Đăng ký</a></li>
-                    <li><a href="https://forms.gle/GeAU2zZeuhHW5mfy9" target="_blank" class="btn-nav">Đăng ký ngay 🚀</a></li>
+                    <li><a href="#linh-vuc">Lĩnh vực</a></li>
+                    <li><a href="#lo-trinh">Quy trình</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                    <li><a class="nav-cta" href="https://forms.gle/GeAU2zZeuhHW5mfy9" target="_blank" rel="noopener noreferrer">Ứng tuyển ngay ↗</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <!-- Hero Banner Section -->
-    <section id="trang-chu" class="hero">
-        <div class="hero-content">
-            <h2>Khơi Nguồn Đam Mê<br>Dẫn Đầu Kỷ Nguyên AI</h2>
-            <p>Nơi hội tụ, giao lưu và phát triển những tài năng công nghệ trẻ tuổi tại Trường THPT Chuyên Hoàng Văn Thụ, tỉnh Phú Thọ.</p>
-            <!-- Link Form Đăng Ký ở nút chính -->
-            <a href="https://forms.gle/GeAU2zZeuhHW5mfy9" target="_blank" class="btn btn-pulse">Gia nhập CLB ngay</a>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="gioi-thieu" class="section">
-        <h2 class="section-title">Về Chúng Tôi</h2>
-        <div style="text-align: center; max-width: 900px; margin: 0 auto; font-size: 1.15rem; color: #555;">
-            <p><strong>Câu lạc bộ Trí tuệ Nhân tạo (AI Club)</strong> của THPT Chuyên Hoàng Văn Thụ được thành lập với sứ mệnh tạo ra một sân chơi học thuật bổ ích, sáng tạo. Lấy hình ảnh mạng nơ-ron và bo mạch làm biểu tượng, chúng tôi không ngừng kết nối các tư duy nhạy bén, hướng tới việc nghiên cứu, ứng dụng Khoa học Máy tính và AI vào thực tiễn.</p>
-        </div>
-    </section>
-
-    <!-- Activities Section -->
-    <section id="hoat-dong" class="section" style="background-color: var(--white); max-width: 100%; padding-left: 5%; padding-right: 5%;">
-        <div style="max-width: 1200px; margin: 0 auto;">
-            <h2 class="section-title">Lĩnh Vực Hoạt Động</h2>
-            <div class="features">
-                <div class="card">
-                    <div class="card-icon">🧠</div>
-                    <h3>Machine Learning & AI</h3>
-                    <p>Tìm hiểu và thực hành các thuật toán học máy, mạng nơ-ron nhân tạo, xử lý ngôn ngữ tự nhiên và thị giác máy tính.</p>
+    <main id="noi-dung">
+        <section id="trang-chu" class="hero" aria-labelledby="hero-title">
+            <div class="container hero-inner">
+                <div>
+                    <p class="eyebrow">HVT AI CLUB · ĐỘI NGŨ NÒNG CỐT</p>
+                    <h1 id="hero-title">Xây nền tảng <span>AI</span>.<br> Tạo tác động thật.</h1>
+                    <p class="hero-lead">Cùng học hỏi, xây dựng dự án và phát triển kỹ năng trong một cộng đồng công nghệ trẻ tại THPT Chuyên Hoàng Văn Thụ.</p>
+                    <div class="hero-actions">
+                        <a class="button button-primary" href="https://forms.gle/GeAU2zZeuhHW5mfy9" target="_blank" rel="noopener noreferrer">Ứng tuyển đội ngũ nòng cốt ↗</a>
+                        <a class="button button-secondary" href="#linh-vuc">Khám phá CLB</a>
+                    </div>
                 </div>
-                <div class="card">
-                    <div class="card-icon">💻</div>
-                    <h3>Lập Trình & Thuật Toán</h3>
-                    <p>Nâng cao tư duy logic thông qua các nền tảng ngôn ngữ lập trình như Python, C++ và tham gia các cuộc thi lập trình thi đấu, Hackathon.</p>
+
+                <aside class="hero-card" aria-label="Thông tin tuyển đội ngũ nòng cốt">
+                    <h2>Bạn sẽ cùng CLB làm gì?</h2>
+                    <ul>
+                        <li>Tham gia workshop, seminar và hoạt động chuyên đề.</li>
+                        <li>Thực hiện dự án AI theo nhóm để xây dựng portfolio.</li>
+                        <li>Phát triển kỹ năng teamwork, lãnh đạo và truyền thông.</li>
+                    </ul>
+                    <div class="stat-row" aria-label="Các ban tuyển dụng">
+                        <div class="stat"><strong>03</strong><span>ban nòng cốt</span></div>
+                        <div class="stat"><strong>AI</strong><span>học qua dự án</span></div>
+                        <div class="stat"><strong>HVT</strong><span>cộng đồng học sinh</span></div>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+        <section id="gioi-thieu" class="section section-white" aria-labelledby="about-title">
+            <div class="container">
+                <div class="section-heading">
+                    <p class="section-kicker">Về chúng mình</p>
+                    <h2 id="about-title">Một nơi để bắt đầu và cùng tiến bộ</h2>
+                    <p>Không cần phải là chuyên gia mới có thể tham gia. Điều quan trọng nhất là tinh thần học hỏi, chủ động và sẵn sàng làm việc cùng đồng đội.</p>
                 </div>
-                <div class="card">
-                    <div class="card-icon">🤖</div>
-                    <h3>Robotics & IoT</h3>
-                    <p>Thiết kế, lắp ráp và lập trình robot điều khiển tự động. Nghiên cứu các ứng dụng Internet of Things (IoT) thông minh.</p>
+                <div class="about-grid">
+                    <article class="content-card">
+                        <h3>Sứ mệnh của HVT AI Club</h3>
+                        <p>Trong những năm gần đây, Trí tuệ Nhân tạo (AI) đã phát triển mạnh mẽ và dần trở thành một phần thiết yếu của cuộc sống hiện đại. Từ y tế, giáo dục, giao thông đến sáng tạo nội dung và nghiên cứu khoa học, AI đang góp phần giải quyết vấn đề nhanh hơn, hiệu quả hơn và mở ra nhiều cơ hội mới. Vì vậy, trang bị kiến thức công nghệ, tư duy sáng tạo và khả năng ứng dụng AI không còn là lợi thế của riêng ai, mà là hành trang cần thiết cho thế hệ trẻ trong kỷ nguyên số.</p>
+                        <p>Câu lạc bộ Trí tuệ Nhân tạo của THPT Chuyên Hoàng Văn Thụ tạo ra một sân chơi học thuật, sáng tạo và gần gũi cho học sinh yêu thích AI, lập trình và công nghệ.</p>
+                        <p>Thông qua các buổi chia sẻ và dự án thực tế, CLB kết nối những tư duy nhạy bén để biến ý tưởng thành sản phẩm có ích.</p>
+                    </article>
+                    <article class="content-card about-highlight">
+                        <h3>Thành viên nhận được gì?</h3>
+                        <ul class="check-list">
+                            <li>Học hỏi từ thành viên, mentor và diễn giả khách mời.</li>
+                            <li>Thử sức với dự án, cuộc thi và hackathon công nghệ.</li>
+                            <li>Rèn kỹ năng thuyết trình, quản lý dự án và lãnh đạo.</li>
+                            <li>Xây dựng portfolio từ những sản phẩm đã cùng làm.</li>
+                        </ul>
+                    </article>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Recruitment Section -->
-    <section id="dang-ky" class="section">
-        <div class="recruitment-card">
-            <h2>Tuyển Thành Viên CLB Trí Tuệ Nhân Tạo</h2>
-            <p>Bạn yêu thích công nghệ, muốn học hỏi về AI hay đơn giản là tìm kiếm những người bạn cùng chung đam mê? Hãy nhanh tay điền đơn đăng ký để trở thành một phần của gia đình HVT AI Club!</p>
-            <!-- Link Form Đăng Ký -->
-            <a href="https://forms.gle/GeAU2zZeuhHW5mfy9" target="_blank" class="btn">Điền Form Đăng Ký Ngay</a>
-        </div>
-    </section>
+        <section id="linh-vuc" class="section" aria-labelledby="roles-title">
+            <div class="container">
+                <div class="section-heading">
+                    <p class="section-kicker">Ba hướng phát triển</p>
+                    <h2 id="roles-title">Chọn nơi bạn có thể tạo giá trị</h2>
+                    <p>Mỗi ban có một vai trò riêng, nhưng cùng hướng tới một mục tiêu: đưa ý tưởng công nghệ đến gần hơn với cộng đồng HVT.</p>
+                </div>
+                <div class="roles-grid">
+                    <article class="role-card">
+                        <div class="role-icon" aria-hidden="true">⌘</div>
+                        <h3>Ban Kỹ thuật</h3>
+                        <p>Học và chia sẻ kiến thức về AI, lập trình; phát triển dự án và hỗ trợ workshop, hackathon.</p>
+                        <strong>Tối đa 05 thành viên</strong>
+                    </article>
+                    <article class="role-card">
+                        <div class="role-icon" aria-hidden="true">◉</div>
+                        <h3>Ban Truyền thông</h3>
+                        <p>Quản lý Fanpage, viết bài, sáng tạo nội dung và ghi lại những khoảnh khắc của CLB.</p>
+                        <strong>Tối đa 03 thành viên</strong>
+                    </article>
+                    <article class="role-card">
+                        <div class="role-icon" aria-hidden="true">✦</div>
+                        <h3>Ban Thiết kế</h3>
+                        <p>Thiết kế poster, banner, slide và xây dựng phong cách hình ảnh cho thương hiệu HVT AI Club.</p>
+                        <strong>Tối đa 03 thành viên</strong>
+                    </article>
+                </div>
+            </div>
+        </section>
 
-    <!-- Footer Section -->
-    <footer id="lien-he">
-        <h4>Câu lạc bộ Trí tuệ Nhân tạo - THPT Chuyên Hoàng Văn Thụ</h4>
-        <p>&copy; 2026 HVT AI Club. Tự hào được sáng lập bởi học sinh Chuyên Hoàng Văn Thụ.</p>
-        <p style="margin-top: 15px; font-size: 0.95rem;">
-            📍 Đường Hoàng Văn Thụ, Phường Hòa Bình, Phú Thọ<br>
-            📧 Email: clbtrituenhantao.hvt@gmail.com | 🌐 Fanpage: https://www.facebook.com/profile.php?id=61557457271958
-        </p>
+        <section id="hoat-dong" class="section section-white" aria-labelledby="activity-title">
+            <div class="container">
+                <div class="section-heading">
+                    <p class="section-kicker">Học bằng cách làm</p>
+                    <h2 id="activity-title">Những hoạt động bạn có thể tham gia</h2>
+                    <p>CLB hướng tới trải nghiệm thực tế, nơi mỗi thành viên đều có cơ hội thử, làm, chia sẻ và cải thiện sản phẩm của mình.</p>
+                </div>
+                <div class="activities-grid">
+                    <article class="activity-card">
+                        <span class="activity-label">Học tập</span>
+                        <h3>Workshop &amp; seminar</h3>
+                        <p>Cùng khám phá AI, lập trình và những công cụ mới qua các buổi chia sẻ dễ hiểu, thực hành được.</p>
+                    </article>
+                    <article class="activity-card">
+                        <span class="activity-label">Dự án</span>
+                        <h3>AI project theo nhóm</h3>
+                        <p>Biến một ý tưởng thành sản phẩm, phân chia nhiệm vụ và cùng nhau xây dựng portfolio cá nhân.</p>
+                    </article>
+                    <article class="activity-card">
+                        <span class="activity-label">Thử sức</span>
+                        <h3>Cuộc thi &amp; hackathon</h3>
+                        <p>Làm quen với áp lực thời gian, giải quyết vấn đề và kết nối với những người cùng đam mê công nghệ.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="lo-trinh" class="section" aria-labelledby="process-title">
+            <div class="container">
+                <div class="section-heading">
+                    <p class="section-kicker">Quy trình tham gia</p>
+                    <h2 id="process-title">Bốn bước để bắt đầu</h2>
+                    <p>Quy trình rõ ràng để bạn biết điều gì sẽ diễn ra sau khi gửi đơn.</p>
+                </div>
+                <div class="steps-grid">
+                    <article class="step-card"><span class="step-number">1</span><h3>Điền form</h3><p>Chia sẻ thông tin, sở thích và ban bạn muốn đồng hành.</p></article>
+                    <article class="step-card"><span class="step-number">2</span><h3>Xem xét hồ sơ</h3><p>Ban Chủ nhiệm xem xét hồ sơ trong vòng vài ngày.</p></article>
+                    <article class="step-card"><span class="step-number">3</span><h3>Phỏng vấn / tuyển chọn</h3><p>Ứng viên phù hợp sẽ nhận lời mời qua email cho vòng tiếp theo.</p></article>
+                    <article class="step-card"><span class="step-number">4</span><h3>Bắt đầu đồng hành</h3><p>Cùng đội ngũ tham gia hoạt động và phát triển dự án đầu tiên.</p></article>
+                </div>
+            </div>
+        </section>
+
+        <section id="dang-ky" class="section recruitment-section" aria-labelledby="apply-title">
+            <div class="container">
+                <div class="recruitment-banner">
+                    <p class="eyebrow">Tuyển đội ngũ nòng cốt</p>
+                    <h2 id="apply-title">Sẵn sàng biến đam mê thành một sản phẩm thật?</h2>
+                    <p>Hãy điền form để Ban Chủ nhiệm hiểu thêm về bạn. Nhớ kiểm tra email thường xuyên sau khi gửi đơn để không bỏ lỡ thông tin vòng tiếp theo.</p>
+                    <a class="button button-primary" href="https://forms.gle/GeAU2zZeuhHW5mfy9" target="_blank" rel="noopener noreferrer">Mở form ứng tuyển ↗</a>
+                    <div class="recruitment-grid" aria-label="Các ban đang tuyển">
+                        <article class="role-card role-card-light"><h3>💻 Kỹ thuật</h3><p>AI, lập trình, dự án và hoạt động học thuật.</p><strong>Tối đa 05</strong></article>
+                        <article class="role-card role-card-light"><h3>📱 Truyền thông</h3><p>Nội dung, Fanpage, quay dựng và sự kiện.</p><strong>Tối đa 03</strong></article>
+                        <article class="role-card role-card-light"><h3>🎨 Thiết kế</h3><p>Poster, slide và nhận diện thương hiệu CLB.</p><strong>Tối đa 03</strong></article>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="faq" class="section section-white" aria-labelledby="faq-title">
+            <div class="container">
+                <div class="section-heading">
+                    <p class="section-kicker">Câu hỏi thường gặp</p>
+                    <h2 id="faq-title">Bạn còn đang băn khoăn?</h2>
+                </div>
+                <div class="faq-list">
+                    <details class="faq-item">
+                        <summary>Chưa có nhiều kinh nghiệm AI có đăng ký được không?</summary>
+                        <p>Có. CLB chào đón cả những bạn mới bắt đầu, miễn là có tinh thần học hỏi, chủ động và sẵn sàng làm việc cùng đội nhóm.</p>
+                    </details>
+                    <details class="faq-item">
+                        <summary>Sau khi gửi form thì điều gì sẽ xảy ra?</summary>
+                        <p>Ban Chủ nhiệm sẽ xem xét hồ sơ trong vòng vài ngày. Những ứng viên phù hợp sẽ nhận email mời tham gia phỏng vấn hoặc vòng tuyển chọn tiếp theo.</p>
+                    </details>
+                    <details class="faq-item">
+                        <summary>Nếu được chọn, mình cần làm gì?</summary>
+                        <p>Bạn sẽ tham gia các hoạt động của ban đã chọn, cùng đồng đội học hỏi, xây dựng dự án và hỗ trợ những chương trình của CLB.</p>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <section id="lien-he" class="section section-white" aria-labelledby="contact-title">
+            <div class="container">
+                <div class="contact-panel">
+                    <div>
+                        <p class="section-kicker" style="color: var(--yellow);">Kết nối với HVT AI Club</p>
+                        <h2 id="contact-title">Theo dõi để không bỏ lỡ hoạt động mới</h2>
+                        <p>Thông tin tuyển chọn và hoạt động của CLB sẽ được cập nhật trên các kênh chính thức.</p>
+                    </div>
+                    <div class="contact-links">
+                        <a href="mailto:clbtrituenhantao.hvt@gmail.com">✉ clbtrituenhantao.hvt@gmail.com</a>
+                        <a href="https://www.facebook.com/profile.php?id=61557457271958" target="_blank" rel="noopener noreferrer">🌐 Trang facebook chính thức của CLB ↗</a>
+                        <a href="https://www.google.com/maps/search/?api=1&amp;query=THPT+Chuyen+Hoang+Van+Thu+Phu+Tho" target="_blank" rel="noopener noreferrer">📍 THPT Chuyên Hoàng Văn Thụ, Phú Thọ ↗</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <strong>Câu lạc bộ Trí tuệ Nhân tạo</strong>
+                    <span>THPT Chuyên Hoàng Văn Thụ</span>
+                </div>
+                <div class="footer-social">
+                    <a href="https://www.facebook.com/profile.php?id=61557457271958" target="_blank" rel="noopener noreferrer">Facebook ↗</a>
+                    <a href="mailto:clbtrituenhantao.hvt@gmail.com">Email ↗</a>
+                </div>
+            </div>
+            <p class="copyright">© 2026 HVT AI Club. Tự hào được sáng lập bởi học sinh Chuyên Hoàng Văn Thụ.</p>
+        </div>
     </footer>
 
-</body>
-</html>
+    <a class="button button-primary mobile-apply" href="https://forms.gle/GeAU2zZeuhHW5mfy9" target="_blank" rel="noopener noreferrer">Ứng tuyển ngay ↗</a>
+
+    <script>
+        const menuToggle = document.querySelector('.menu-toggle');
+        const siteNav = document.querySelector('#site-nav');
+        const navLinks = document.querySelectorAll('#site-nav a');
+
+        function setMenu(open) {
+            siteNav.classList.toggle('is-open', open);
+            document.body.classList.toggle('menu-open', open);
+            menuToggle.setAttribute('aria-expanded', String(open));
+            menuToggle.setAttribute('aria-label', open ? 'Đóng menu' : 'Mở menu');
+            menuToggle.textContent = open ? '×' : '☰';
+        }
+
+        menuToggle.addEventListener('click', () => {
+            setMenu(!siteNav.classList.contains('is-open'));
+        });
+
+        navLinks.forEach((link) => {
+            link.addEventListener('click', () => setMenu(false));
+        });
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') setMenu(false);
+        });
+    </script>
+
+
+</body><div id="codex-browser-sidebar-comments-root" style="position: fixed; inset: 0px; pointer-events: none; z-index: 2147483647;"></div></html>
