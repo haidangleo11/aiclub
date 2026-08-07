@@ -22,8 +22,8 @@
             --ink: #17243d;
             --muted: #5f6b7e;
             --surface: #ebf3ff;
-            --white: ##fff5db;
-            --line: #dfe8f3;
+            --white: #f5f9ff;
+            --line: #65a9fc;
             --shadow: 0 18px 45px rgba(8, 45, 112, 0.11);
             --radius: 22px;
             --header-height: 82px;
@@ -35,6 +35,22 @@
             box-sizing: border-box;
         }
 
+
+        .tblue-gradient {
+            background: linear-gradient(135deg, #155285 0%, #19115c 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: inline-block;
+        }
+        .tyellow-gradient {
+            background: linear-gradient(135deg, #ffd24a 0%, #faaa48 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: inline-block;
+        }
+        
         html {
             scroll-behavior: smooth;
             scroll-padding-top: calc(var(--header-height) + 20px);
@@ -284,10 +300,29 @@
             font-size: clamp(2.55rem, 5vw, 4.7rem);
             letter-spacing: -0.04em;
             line-height: 1.05;
+            background:linear-gradient(90deg,#b5daff,#80c2ff,#b1a1ff,#ffb0f5,#b5daff);
+            background-size:400% 100%;
+            -webkit-background-clip:text;
+            background-clip:text;
+            -webkit-text-fill-color:transparent;
+            animation:changeFont 6s infinite,titleGradient 14s linear infinite;
         }
+
+/* FONT CHANGER */@keyframes changeFont{
+    0%, 32%{font-family: Consolas, monospace;}
+    33%, 65%{font-family: "Inter", sans-serif;}
+    66%, 100%{font-family: "JetBrains Mono", monospace;}}
+/* FONT GRADIENT */@keyframes titleGradient{
+    from{background-position:0% 50%;}
+    to{background-position:400% 50%;}}
 
         .hero h1 span {
             color: var(--yellow);
+            background:linear-gradient(135deg,#ffd54f,#ff9800);
+            -webkit-background-clip:text;
+            background-clip:text;
+            -webkit-text-fill-color:transparent;
+            color:transparent;
         }
 
         .hero-lead {
@@ -311,23 +346,23 @@
 
         .button-primary {
             color: var(--navy);
-            background: var(--yellow);
+            background: linear-gradient(135deg, #ffb728 0%, #ff9800 100%);
             box-shadow: 0 11px 24px rgba(255, 201, 40, 0.25);
         }
 
         .button-primary:hover {
-            background: #ffda55;
+            background: linear-gradient(135deg, #ffda55 0%, #ffb300 100%);
             box-shadow: 0 15px 30px rgba(255, 201, 40, 0.34);
         }
 
         .button-secondary {
             color: var(--white);
-            background: rgba(255, 255, 255, 0.11);
+            background: linear-gradient(to bottom, #2a3780 0%, #503091 100%);
             border: 1px solid rgba(255, 255, 255, 0.35);
         }
 
         .button-secondary:hover {
-            background: rgba(255, 255, 255, 0.19);
+            background: linear-gradient(to bottom, #4054c2 0%, #633ab5 100%);
         }
 
         .hero-card {
@@ -376,13 +411,30 @@
         }
 
         .stat {
-            padding: 16px 12px;
-            background: rgba(0, 22, 72, 0.22);
+            padding: 20px 12px;
+            background: linear-gradient(120deg, #303e8c 0%, #53358f 100%);
             border: 1px solid rgba(255, 255, 255, 0.13);
             border-radius: 16px;
             text-align: center;
+            position:relative;
+            overflow:hidden;
         }
-
+        .stat::before{
+            content:"";
+            position:absolute;
+            inset:0;
+            background:linear-gradient(120deg,#733ba1,#3747a1);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            opacity:0;
+            transition:opacity .5s ease;
+        }
+        .stat:hover::before{
+            opacity:1;
+        }
+        .stat > *{
+            position:relative;
+            z-index:1;
+        }
         .stat strong,
         .stat span {
             display: block;
@@ -424,6 +476,10 @@
         .section-heading p {
             margin: 0;
             color: var(--muted);
+        }
+        .section-heading p1 {
+            font-size: 0.9rem;
+            color: #606066;
         }
 
         .section-kicker {
@@ -475,7 +531,7 @@
 
         .about-highlight {
             color: var(--white);
-            background: linear-gradient(145deg, var(--navy), var(--blue-dark));
+            background: linear-gradient(145deg, #301f63, #333691);
             border: 0;
         }
 
@@ -518,29 +574,43 @@
             font-size: 1.55rem;
         }
 
-        .role-card h3,
+        .role-card h3 {
+            color: var(--muted);
+        }
         .activity-card h3,
         .step-card h3 {
             margin: 0 0 10px;
-            color: var(--navy);
-            font-size: 1.2rem;
+            background: linear-gradient(135deg,#3e42ad 0%,#3c1982 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 1.3rem;
+        }
+
+        .role-card h4{
+            margin: 0 0 10px;
+            background: linear-gradient(135deg,#4d52d1 0%,#671fab 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 1rem;
         }
 
         .role-card p,
         .activity-card p,
         .step-card p {
             margin: 0;
-            color: var(--muted);
+            color: #3f1369;
             font-size: 0.95rem;
         }
 
         .role-card strong {
             display: inline-block;
             margin-top: 17px;
-            padding: 5px 10px;
-            color: var(--blue-dark);
-            background: #eaf5ff;
-            border-radius: 999px;
+            padding: 8px 10px;
+            color: var(--white);
+            background: linear-gradient(135deg, #faca46 0%, #fa9a46 100%);
+            border-radius: 9px;
             font-size: 0.78rem;
         }
 
@@ -583,7 +653,7 @@
             height: 30px;
             place-items: center;
             color: var(--navy);
-            background: var(--yellow);
+            background: linear-gradient(180deg, #f5b938, #f56e38);
             border-radius: 50%;
             font-weight: 900;
         }
@@ -595,7 +665,7 @@
         .recruitment-banner {
             padding: 46px;
             color: var(--white);
-            background: linear-gradient(135deg, var(--navy), var(--blue));
+            background: linear-gradient(135deg, #1f2161, #562775);
             border-radius: 28px;
             box-shadow: 0 22px 55px rgba(8, 45, 112, 0.2);
         }
@@ -606,7 +676,17 @@
             font-size: clamp(1.8rem, 3vw, 2.65rem);
             letter-spacing: -0.03em;
             line-height: 1.12;
+            background:linear-gradient(90deg,#ff7a59,#ffb347,#ffe082,#ff7a59);
+            background-size:300%;
+            -webkit-background-clip:text;
+            background-clip:text;
+            -webkit-text-fill-color:transparent;
+            animation:h2Gradient 10s linear infinite;
         }
+/* MEMBER GRADIENT */ @keyframes h2Gradient {
+    from{background-position:0%;}
+    to{background-position:300%;}}
+/**/
 
         .recruitment-banner > p {
             max-width: 760px;
@@ -618,7 +698,18 @@
             margin-top: 26px;
         }
 
+/* MEMBER AMOUNT SETUP */
         .role-card-light {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: none;
+        }
+        .role-card-light-low {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: none;
+        }
+        .role-card-light-full {
             background: rgba(255, 255, 255, 0.12);
             border-color: rgba(255, 255, 255, 0.2);
             box-shadow: none;
@@ -628,10 +719,27 @@
         .role-card-light p {
             color: var(--white);
         }
+        .role-card-light-low h3,
+        .role-card-light-low p {
+            color: var(--white);
+        }
+        .role-card-light-full h3,
+        .role-card-light-full p {
+            color: var(--white);
+        }
 
+/* MEMBER AMOUNT */
+        .role-card-light-low strong {
+            color: var(--navy);
+            background: linear-gradient(135deg, #d3ff36, #ffe736);
+        }
         .role-card-light strong {
             color: var(--navy);
-            background: var(--yellow);
+            background: linear-gradient(135deg, #ffcf4d, #ff7936);
+        }
+        .role-card-light-full strong {
+            color: var(--navy);
+            background: linear-gradient(135deg, #ff7936, #ff3672);
         }
 
         .faq-list {
@@ -654,6 +762,33 @@
         .faq-item p {
             margin: 12px 0 0;
             color: var(--muted);
+        }
+/* RAINBOW */
+        #faq-title{
+        background: linear-gradient(
+            135deg,
+            #ff4d4d,
+            #ffb347,
+            #ffe66d,
+            #4cd964,
+            #00c7ff,
+            #5e5ce6,
+            #ff4d4d
+        );
+        background-size:400%;
+        -webkit-background-clip:text;
+        background-clip:text;
+        -webkit-text-fill-color:transparent;
+        color:transparent;
+        animation: rainbow 20s ease-in-out infinite;
+        }
+        @keyframes rainbow{
+            from{
+                background-position:0%;
+            }
+            to{
+                background-position:400%;
+            }
         }
 
         .contact-panel {
@@ -719,6 +854,11 @@
             font-size: 0.87rem;
         }
 
+        .footer-brand p {
+            margin-top: 2px;
+            margin-bottom: 2px;
+            font-size: 0.7rem;
+        }
         .footer-social {
             display: flex;
             flex-wrap: wrap;
@@ -929,7 +1069,7 @@
         <section id="trang-chu" class="hero" aria-labelledby="hero-title">
             <div class="container hero-inner">
                 <div>
-                    <p class="eyebrow">HVT AI CLUB · ĐỊNH HƯỚNG</p>
+                    <p class="eyebrow tyellow-gradient" >HVT AI CLUB · ĐỊNH HƯỚNG</p>
                     <h1 id="hero-title">  Câu lạc bộ <span>AI</span>,<br> xây dựng và phát triển.</h1>
                     <p class="hero-lead">Sử dụng trí tuệ nhân tạo một cách thông minh để tạo nên một cộng đồng mới mẻ tại trường THPT Chuyên Hoàng Văn Thụ.</p>
                     <div class="hero-actions">
@@ -946,7 +1086,7 @@
                         <li>Phát triển kỹ năng teamwork, lãnh đạo và truyền thông.</li>
                     </ul>
                     <div class="stat-row" aria-label="Các ban tuyển dụng">
-                        <div class="stat"><strong>3</strong><span>Bộ phận tối quan trọng</span></div>
+                        <div class="stat"><strong>5</strong><span>Bộ phận tối quan trọng</span></div>
                         <div class="stat"><strong>AI</strong><span>Chính là lõi chính của CLB</span></div>
                         <div class="stat"><strong>HVT</strong><span>Cùng cộng đồng thành viên thân thiện</span></div>
                     </div>
@@ -958,6 +1098,7 @@
             <div class="container">
                 <div class="section-heading">
                     <p class="section-kicker">Về chúng mình</p>
+                    <p>----------</p>
                     <h2 id="about-title">Một nơi để bắt đầu và cùng tiến bộ</h2>
                     <p>Không cần phải có trình độ mới được tham gia. Điều quan trọng nhất chính là tinh thần học hỏi, chủ động và sẵn sàng làm việc cùng mọi người.</p>
                 </div>
@@ -985,62 +1126,55 @@
             <div class="container">
                 <div class="section-heading">
                     <p class="section-kicker">Năm hướng phát triển</p>
+                    <p>-----------</p>
                     <h2 id="roles-title">Chọn nơi bạn có thể tạo giá trị</h2>
                     <p>Chúng tôi chia CLB thành 3 bộ phận, nhưng vẫn giữ nguyên định hướng: đưa ý tưởng công nghệ đến gần hơn với cộng đồng.</p>
                 </div>
                 <div class="roles-grid">
-                    <article class="role-card">
+                    <article class="step-card role-card">
                         <div class="role-icon" aria-hidden="true">⌘</div>
                         <h3>Bộ phận Kỹ thuật</h3>
-                        <p>Học và chia sẻ kiến thức về AI, lập trình; phát triển dự án và hỗ trợ workshop, hackathon.</p>
-                        <p></p>
-                        <p>Để đạt được hiệu quả phát triển tốt nhất, bạn cần củng cố cho mình:</p>
+                        <h4>→ Học và chia sẻ kiến thức về AI, lập trình; phát triển dự án và hỗ trợ workshop, hackathon. Để đạt được hiệu quả phát triển tốt nhất, bạn cần củng cố cho mình:</h4>
                         <p>· Kĩ năng cơ bản về các phần mềm lập trình như C++, Python, HTML,...</p>
                         <p>. Có khả năng phát hiện lỗi sai, phát hiện điểm bất hợp lí trong các dự án của CLB.</p>
                         <p>. Nhanh nhạy trong việc xử lí máy tính, xử lí thông tin, thực hiện tác vụ máy tính.</p>
                         <p></p>
-                        <p>Đây là bộ phận chủ chốt trong việc xây dựng phần lõi tiết yếu cho các dự án của chúng tôi.</p>
+                        <h4>→ Đây là bộ phận chủ chốt trong việc xây dựng phần lõi tiết yếu cho các dự án của chúng tôi.</h4>
                         <strong>Tối đa 05 thành viên</strong>
                     </article>
-                    <article class="role-card">
+                    <article class="step-card role-card">
                         <div class="role-icon" aria-hidden="true">◉</div>
                         <h3>Bộ phận Truyền thông</h3>
-                        <p>Quản lý các trang mạng xã hội, viết bài, sáng tạo nội dung và đóng góp cho cộng đồng những khoảnh khắc quan trọng của chúng tôi.</p>
-                        <p></p>
-                        <p>Dưới đây là một số năng lực bạn cần có:</p>
+                        <h4>→ Quản lý các trang mạng xã hội, viết bài, sáng tạo nội dung và đóng góp cho cộng đồng những khoảnh khắc quan trọng của chúng tôi. Dưới đây là một số năng lực bạn cần có:</h4>
                         <p>· Tìm hiểu được các xu hướng của mạng xã hội để xây dựng bài đăng.</p>
                         <p>· Có nguồn từ vựng tốt, nhằm giúp ích cho việc lên ý tưởng và lời nói.</p>
                         <p>· Có khả năng quảng cáo, quảng bá CLB trôi chảy.
                         <p></p>
-                        <p>Nếu bạn có khả năng xử lí những yêu cầu khách quan, hoặc có tầm nhìn rộng để phát triển bề ngoài của CLB, đây là nơi dành cho bạn!</p>
+                        <h4>→ Nếu bạn có khả năng xử lí những yêu cầu khách quan, hoặc có tầm nhìn rộng để phát triển bề ngoài của CLB, đây là nơi dành cho bạn!</h4>
                         <strong>Tối đa 03 thành viên</strong>
                     </article>
-                    <article class="role-card">
+                    <article class="step-card role-card">
                         <div class="role-icon" aria-hidden="true">✦</div>
                         <h3>Bộ phận Thiết kế</h3>
-                        <p>Thiết kế các poster, banner, slide và xây dựng phong cách hình ảnh cho thương hiệu HVT AI Club.</p>
-                        <p></p>
-                        <p>Nhiệm vụ chủ yếu ở bộ phận này là bạn phải làm chủ các kĩ năng như:</p>
+                        <h4>→ Thiết kế các poster, banner, slide và xây dựng phong cách hình ảnh cho thương hiệu HVT AI Club. Nhiệm vụ chủ yếu ở bộ phận này là bạn phải làm chủ các kĩ năng như:</h4>
                         <p></p>
                         <p>· Làm chủ được các ứng dụng và công cụ như Canva, Figma, Adobe...</p>
                         <p>· Có khả năng thẩm mĩ cao, biết cách chọn lọc sao cho phù hợp với tổng thể của thiết kế</p>
                         <p>· Phối hợp được với bộ phận Kĩ thuật để vừa cân bằng được lượng công việc phải làm, vừa làm cho thiết kết đạt được mục tiêu ban đầu.</p>
                         <strong>Tối đa 03 thành viên</strong>
                     </article>
-                    <article class="role-card">
+                    <article class="step-card role-card">
                         <div class="role-icon" aria-hidden="true">⫻</div>
                         <h3>Bộ phận Nhân sự</h3>
-                        <p>Đây là bộ phận có công việc chủ yếu là quản lí thành viên, xây dựng và phát triển các bài khảo sát nhằm tăng trải nghiệm CLB cho các thành viên. Đồng thời cũng quản lí đa phần các đơn xin tuyển chọn của CLB.</p>
+                        <h4>→ Đây là bộ phận có công việc chủ yếu là quản lí thành viên, xây dựng và phát triển các bài khảo sát nhằm tăng trải nghiệm CLB cho các thành viên. Đồng thời cũng quản lí đa phần các đơn xin tuyển chọn của CLB.</h4>
                         <p></p>
                         <p>Việc quản lí nhân sự của CLB là công việc yêu cầu sự chính xác cao, vậy nên chúng tôi ưu tiên những người có khả năng tính toán, quan sát nhanh; biết nhìn nhận tình trạng của CLB để có hướng đi tích cực nhất.</p>
                         <strong>Tối đa 03 thành viên</strong>
                     </article>
-                    <article class="role-card">
+                    <article class="step-card role-card">
                         <div class="role-icon" aria-hidden="true">₫</div>
                         <h3>Bộ phận Kinh tế - Đối ngoại</h3>
-                        <p>Tham gia quản lí kinh tế, các nguồn thu, nguồn lợi và các vấn đề về mặt ngoại bộ của CLB.</p>
-                        <p></p>
-                        <p>Dù cho công việc nhẹ nhàng hơn các bộ phận khác, nhưng chúng tôi vẫn cần những người:</p>
+                        <h4>→ Tham gia quản lí kinh tế, các nguồn thu, nguồn lợi và các vấn đề về mặt ngoại bộ của CLB. Dù cho công việc nhẹ nhàng hơn các bộ phận khác, nhưng chúng tôi vẫn cần những người:</h4>
                         <p>· Có khả năng cân đối chi tiêu, kiểm soát tài chính của cả CLB.</p>
                         <p>· Kịp thời đưa ra quyết định về tài chính trong những công việc yêu cầu thời hạn.</p>
                         <p>· Có kĩ năng lập báo cáo, lập giấy tờ minh bạch và hiệu quả.</p>
@@ -1055,8 +1189,11 @@
             <div class="container">
                 <div class="section-heading">
                     <p class="section-kicker">Học bằng cách làm</p>
+                    <p>-----------</p>
                     <h2 id="activity-title">Những hoạt động bạn có thể tham gia</h2>
                     <p>CLB hướng tới trải nghiệm thực tế, nơi mỗi thành viên đều có cơ hội thử, làm, chia sẻ và cải thiện sản phẩm của mình.</p>
+                    <p></p>
+                    <p1>** Về sau, tất cả hoạt động của CLB sẽ được lưu giữ tại đây! **</p1>
                 </div>
                 <div class="activities-grid">
                     <article class="activity-card">
@@ -1087,11 +1224,12 @@
             <div class="container">
                 <div class="section-heading">
                     <p class="section-kicker">Quy trình tham gia</p>
+                    <p>-----------</p>
                     <h2 id="process-title">Bốn bước để bắt đầu</h2>
                     <p>Quy trình sẽ giúp bạn biết bạn cần làm gì để trở thành thành viên của chúng tôi.</p>
                 </div>
                 <div class="steps-grid">
-                    <article class="step-card"><span class="step-number">1</span><h3>Điền form</h3><p>Nêu ra những thông tin thiết yếu của bạn, cùng với đó là lí do bạn nhắm đến chúng tôi.</p></article>
+                    <article class="step-card"><span class="step-number">1</span><h3>Điền đơn đăng kí</h3><p>Nêu ra những thông tin thiết yếu của bạn, cùng với đó là lí do bạn nhắm đến chúng tôi.</p></article>
                     <article class="step-card"><span class="step-number">2</span><h3>Xem xét hồ sơ</h3><p>Chủ nhiệm CLB sẽ xem xét đơn của bạn trong vài ngày ngắn hạn.</p></article>
                     <article class="step-card"><span class="step-number">3</span><h3>Phỏng vấn / tuyển chọn</h3><p>Bạn sẽ nhận được email của chúng tôi, kèm thông báo về vòng tiếp theo.</p></article>
                     <article class="step-card"><span class="step-number">4</span><h3>Bắt đầu đồng hành</h3><p>Cuối cùng bạn cũng đã là một phần của chúng tôi! Hãy cùng nhau tạo nên những dự án thật chất lượng nhé!</p></article>
@@ -1102,12 +1240,12 @@
         <section id="dang-ky" class="section recruitment-section" aria-labelledby="apply-title">
             <div class="container">
                 <div class="recruitment-banner">
-                    <p class="eyebrow">Hiện tại chúng tôi đã có ai?</p>
+                    <p class="eyebrow tyellow-gradient">Hiện tại chúng tôi đã có ai?</p>
                     <h2 id="apply-title">Đây là danh sách thành viên của chúng tôi</h2>
                     <p>Pss: Hãy điền form để chúng tôi biết thêm về bạn. Nhớ kiểm tra email thường xuyên sau khi gửi đơn để không bỏ lỡ thông tin vòng tiếp theo ;></p>
                     <a class="button button-primary" href="https://forms.gle/GeAU2zZeuhHW5mfy9" target="_blank" rel="noopener noreferrer">Mở form ứng tuyển ↗</a>
-                    <div class="recruitment-grid" aria-label="Các ban đang tuyển">
-                        <article class="role-card role-card-light"><h3>✔ Giáo viên cố vấn</h3>
+                    <div class="recruitment-grid" aria-label="Các bộ phận đang tuyển">
+                        <article class="role-card role-card-light-full"><h3>✔ Giáo viên cố vấn</h3>
                         <p>Thầy giáo Nguyễn Tiến Đức</p>
                         <p>Thầy giáo Phạm Đình Mẫn</p>
                         <strong>2/2</strong></article>
@@ -1116,19 +1254,19 @@
                         <p>[10TI] Tống Hoàng Sang</p>
                         <p>...</p>
                         <strong>2/5</strong></article>
-                        <article class="role-card role-card-light"><h3>📱 Truyền thông</h3>
+                        <article class="role-card role-card-light-low"><h3>📱 Truyền thông</h3>
                         <p>[10A1] Bùi Hoàng Ngọc Lan</p>
                         <p>...</p>
-                        <strong>2/3</strong></article>
-                        <article class="role-card role-card-light"><h3>🎨 Thiết kế</h3>
+                        <strong>1/3</strong></article>
+                        <article class="role-card role-card-light-low"><h3>🎨 Thiết kế</h3>
                         <p>[10T1] Nguyễn Đức Hiển</p>
                         <p>...</p>
                         <strong>1/3</strong></article>
-                        <article class="role-card role-card-light"><h3>😁 Nhân sự</h3>
+                        <article class="role-card role-card-light-low"><h3>😁 Nhân sự</h3>
                         <p>[10H] Lê Bảo Ngọc</p>
                         <p>...</p>
                         <strong>1/3</strong></article>
-                        <article class="role-card role-card-light"><h3>🥐 Kinh tế - Đối ngoại</h3>
+                        <article class="role-card role-card-light-low"><h3>🥐 Kinh tế - Đối ngoại</h3>
                         <p>[10L] Đoàn Minh Anh</p>
                         <p>...</p>
                         <strong>1/3</strong></article>
@@ -1141,6 +1279,7 @@
             <div class="container">
                 <div class="section-heading">
                     <p class="section-kicker">Câu hỏi thường gặp [FAQ]</p>
+                    <p>-----------</p>
                     <h2 id="faq-title">Bạn còn đang băn khoăn?</h2>
                 </div>
                 <div class="faq-list">
@@ -1168,7 +1307,7 @@
             <div class="container">
                 <div class="contact-panel">
                     <div>
-                        <p class="section-kicker" style="color: var(--yellow);">Kết nối với H.A.C</p>
+                        <p class="section-kicker tyellow-gradient" style="color: var(--yellow);">Kết nối với H.A.C</p>
                         <h2 id="contact-title">Theo dõi chúng tôi để không bỏ lỡ những điều mới mẻ.</h2>
                         <p></p>
                         <p> → Thông tin tuyển chọn và hoạt động của CLB sẽ được cập nhật trên trang Facebook chính thức.</p>
@@ -1187,14 +1326,12 @@
                 <div class="contact-panel">
                     <div>
                         <p class="section-kicker" style="color: var(--yellow);">THÔNG TIN WEBSITE</p>
-                        <h2 id="contact-title">Một số thông tin mở.</h2>
+                        <h2 id="contact-title">Mã nguồn mở</h2>
                         <p></p>
-                        <p> → Chủ đề [Có thay đổi: Post-summer</p>
-                        <p> → Màu sắc chủ đạo: #087bdc; #ffc928.</p>
-                        <p> → ... Xem thêm ở GitHub</p>
+                        
                     </div>
                     <div class="contact-links">
-                        <a href="https://github.com/haidangleo11/aiclub">👾 Mã nguồn: GitHub</a>
+                        <a href="https://github.com/haidangleo11/aiclub">👾 Source code from GitHub</a>
                     </div>
                 </div>
             </div>
@@ -1207,13 +1344,19 @@
                 <div class="footer-brand">
                     <strong>Câu lạc bộ Trí tuệ Nhân tạo</strong>
                     <span>THPT Chuyên Hoàng Văn Thụ</span>
+                    <P></p>
+                    <p>■ Theme [Seasonal Change]: Post-summer August</p>
+                    <p>■ Color: #087bdc; #ffc928.</p>
+                    <p>■ Website creator/owner: fctc_firefly01</p>
+                    <p>■ Website regular developer/updater: cimeraldz</p>
+                    <p>■ ... More on GitHub :D</p>
                 </div>
                 <div class="footer-social">
                     <a href="https://www.facebook.com/profile.php?id=61557457271958" target="_blank" rel="noopener noreferrer">Facebook ↗</a>
                     <a href="mailto:clbtrituenhantao.hvt@gmail.com">Email ↗</a>
                 </div>
             </div>
-            <p class="copyright">© 2026 HVT AI Club (H.A.C). 100% resource from HVTer. | Website creator: [fctc_firefly01] [cimeraldz] |</p>
+            <p class="copyright">© 2026 HVT AI Club (H.A.C). 100% resource from HVTer. | Please no copying before actual contact. |</p>
         </div>
     </footer>
 
