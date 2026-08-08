@@ -54,46 +54,6 @@ Phụ trách toàn bộ các hoạt động liên quan đến công nghệ và p
 
 ---
 
-### 🎨 Ban Thiết kế
-
-Phụ trách hình ảnh và nhận diện thương hiệu của HVT AI Club.
-
-**Công việc:**
-
-* Thiết kế poster và banner
-* Thiết kế hình ảnh cho các sự kiện
-* Xây dựng nhận diện thương hiệu
-* UI/UX cho các sản phẩm của CLB
-
-**Phù hợp với:**
-
-* Yêu thích thiết kế
-* Có khả năng sáng tạo
-* Quan tâm đến UI/UX
-* Biết sử dụng Canva, Figma, Photoshop hoặc các công cụ tương tự
-
----
-
-### 📱 Ban Truyền thông
-
-Phụ trách quảng bá hình ảnh và các hoạt động của CLB.
-
-**Công việc:**
-
-* Quản lý Fanpage và mạng xã hội
-* Viết bài và sáng tạo nội dung
-* Chụp ảnh, quay và dựng video
-* Truyền thông cho các sự kiện
-* Xây dựng hình ảnh của HVT AI Club
-
-**Phù hợp với:**
-
-* Yêu thích sáng tạo nội dung
-* Thích viết, quay phim hoặc chỉnh sửa video
-* Chủ động và cập nhật xu hướng
-
----
-
 ## 🛠️ Công nghệ
 
 Website hiện được xây dựng với các công nghệ web cơ bản:
