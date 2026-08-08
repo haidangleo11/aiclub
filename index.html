@@ -10,7 +10,7 @@
     <meta property="og:image" content="icon.png">
     <meta property="og:locale" content="vi_VN">
     <link rel="icon" type="image/png" href="icon.png">
-    <title>HVT.AI - CLB Trí tuệ Nhân tạo THPT chuyên Hoàng Văn Thụ</title>
+    <title>H.A.C | HVT A.I Club</title>
 
     <style>
         :root {
@@ -1046,6 +1046,192 @@
                 animation-iteration-count: 1 !important;
             }
         }
+
+        /* HVT AI chatbot */
+        .chatbot-launcher {
+            position: fixed;
+            right: 24px;
+            bottom: 24px;
+            z-index: 1100;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            min-height: 48px;
+            padding: 0 18px;
+            border: 1px solid rgba(255, 255, 255, 0.28);
+            border-radius: 999px;
+            color: #ffffff;
+            background: linear-gradient(135deg, #6a2fc3, #b52c83);
+            box-shadow: 0 14px 32px rgba(43, 12, 93, 0.3);
+            font: inherit;
+            font-weight: 800;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .chatbot-launcher:hover,
+        .chatbot-launcher:focus-visible {
+            transform: translateY(-2px);
+            box-shadow: 0 18px 38px rgba(43, 12, 93, 0.4);
+        }
+
+        .chatbot-panel {
+            position: fixed;
+            right: 24px;
+            bottom: 86px;
+            z-index: 1100;
+            display: grid;
+            grid-template-rows: auto 1fr auto;
+            width: min(390px, calc(100vw - 32px));
+            max-height: min(620px, calc(100vh - 118px));
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.26);
+            border-radius: 22px;
+            background: rgba(255, 255, 255, 0.96);
+            box-shadow: 0 24px 60px rgba(26, 13, 67, 0.3);
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(12px) scale(0.98);
+            transition: opacity 0.2s ease, transform 0.2s ease;
+        }
+
+        .chatbot-panel.is-open {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(0) scale(1);
+        }
+
+        .chatbot-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            padding: 16px 18px;
+            color: #ffffff;
+            background: linear-gradient(135deg, #2c0d7a, #761e91, #b52c83);
+        }
+
+        .chatbot-header strong,
+        .chatbot-header span {
+            display: block;
+        }
+
+        .chatbot-header strong {
+            font-size: 1rem;
+        }
+
+        .chatbot-header span {
+            margin-top: 2px;
+            color: rgba(255, 255, 255, 0.78);
+            font-size: 0.75rem;
+        }
+
+        .chatbot-close {
+            display: grid;
+            width: 34px;
+            height: 34px;
+            flex: 0 0 auto;
+            place-items: center;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: 50%;
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.1);
+            font-size: 1.35rem;
+            line-height: 1;
+            cursor: pointer;
+        }
+
+        .chatbot-messages {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            min-height: 180px;
+            max-height: 390px;
+            padding: 16px;
+            overflow-y: auto;
+            background: #f7f4ff;
+        }
+
+        .chatbot-message {
+            display: flex;
+        }
+
+        .chatbot-message.user {
+            justify-content: flex-end;
+        }
+
+        .chatbot-message-bubble {
+            max-width: 88%;
+            padding: 10px 12px;
+            border-radius: 15px;
+            color: #2d2350;
+            background: #e9e2ff;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            white-space: pre-wrap;
+            overflow-wrap: anywhere;
+        }
+
+        .chatbot-message.user .chatbot-message-bubble {
+            color: #ffffff;
+            background: #5c31a5;
+        }
+
+        .chatbot-form {
+            display: flex;
+            gap: 8px;
+            padding: 12px;
+            border-top: 1px solid #e7e0f2;
+            background: #ffffff;
+        }
+
+        .chatbot-form input {
+            min-width: 0;
+            flex: 1;
+            height: 42px;
+            padding: 0 12px;
+            border: 1px solid #d8cfea;
+            border-radius: 12px;
+            color: #2d2350;
+            background: #fbfaff;
+            font: inherit;
+            outline: none;
+        }
+
+        .chatbot-form input:focus {
+            border-color: #7041bf;
+            box-shadow: 0 0 0 3px rgba(112, 65, 191, 0.14);
+        }
+
+        .chatbot-form button {
+            min-width: 58px;
+            border: 0;
+            border-radius: 12px;
+            color: #ffffff;
+            background: #5c31a5;
+            font: inherit;
+            font-weight: 800;
+            cursor: pointer;
+        }
+
+        .chatbot-form button:disabled,
+        .chatbot-form input:disabled {
+            cursor: wait;
+            opacity: 0.6;
+        }
+
+        @media (max-width: 760px) {
+            .chatbot-launcher {
+                right: 16px;
+                bottom: 78px;
+            }
+
+            .chatbot-panel {
+                right: 16px;
+                bottom: 136px;
+                max-height: calc(100vh - 154px);
+            }
+        }
     </style>
 </head>
 
@@ -1080,7 +1266,7 @@
         <section id="trang-chu" class="hero" aria-labelledby="hero-title">
             <div class="container hero-inner">
                 <div>
-                    <p class="eyebrow tyellow-gradient" >HVT AI CLUB · ĐỊNH HƯỚNG</p>
+                    <p class="eyebrow tyellow-gradient">HVT AI CLUB · ĐỊNH HƯỚNG</p>
                     <h1 id="hero-title">  Câu lạc bộ <span>AI</span>,<br> xây dựng và phát triển.</h1>
                     <p class="hero-lead">Sử dụng trí tuệ nhân tạo một cách thông minh để tạo nên một cộng đồng mới mẻ tại trường THPT Chuyên Hoàng Văn Thụ.</p>
                     <div class="hero-actions">
@@ -1163,7 +1349,7 @@
                         <p>· Tìm hiểu được các xu hướng của mạng xã hội để xây dựng bài đăng.</p>
                         <p>· Có nguồn từ vựng tốt, nhằm giúp ích cho việc lên ý tưởng và lời nói.</p>
                         <p>· Có khả năng quảng cáo, quảng bá CLB trôi chảy.
-                        <p></p>
+                        </p><p></p>
                         <h4>→ Nếu bạn có khả năng xử lí những yêu cầu khách quan, hoặc có tầm nhìn rộng để phát triển bề ngoài của CLB, đây là nơi dành cho bạn!</h4>
                         <strong>Tối đa 03 thành viên</strong>
                     </article>
@@ -1258,7 +1444,7 @@
                 <div class="recruitment-banner">
                     <p class="eyebrow tyellow-gradient">Hiện tại chúng tôi đã có ai?</p>
                     <h2 id="apply-title">Đây là danh sách thành viên của chúng tôi</h2>
-                    <p>Pss: Hãy điền form để chúng tôi biết thêm về bạn. Nhớ kiểm tra email thường xuyên sau khi gửi đơn để không bỏ lỡ thông tin vòng tiếp theo ;></p>
+                    <p>Pss: Hãy điền form để chúng tôi biết thêm về bạn. Nhớ kiểm tra email thường xuyên sau khi gửi đơn để không bỏ lỡ thông tin vòng tiếp theo ;&gt;</p>
                     <a class="button button-primary" href="https://forms.gle/GeAU2zZeuhHW5mfy9" target="_blank" rel="noopener noreferrer">Mở form ứng tuyển ↗</a>
                     <div class="recruitment-grid" aria-label="Các bộ phận đang tuyển">
                         <article class="role-card role-card-light-full"><h3>✔ Giáo viên cố vấn</h3>
@@ -1362,7 +1548,7 @@
                 <div class="footer-brand">
                     <strong>Câu lạc bộ Trí tuệ Nhân tạo</strong>
                     <span>THPT Chuyên Hoàng Văn Thụ</span>
-                    <P></p>
+                    <p></p>
                     <p>■ Theme [Seasonal Change]: Post-summer August</p>
                     <p>■ Color: #087bdc; #ffc928.</p>
                     <p>■ Website creator/owner: fctc_firefly01</p>
@@ -1377,6 +1563,30 @@
             <p class="copyright">© 2026 HVT AI Club (H.A.C). 100% resource from HVTer. | Please no copying before actual contact. |</p>
         </div>
     </footer>
+
+    <button class="chatbot-launcher" id="chatbot-launcher" type="button" aria-controls="chatbot-panel" aria-expanded="false">
+        <span aria-hidden="true">✦</span>
+        <span>Hỏi AI</span>
+    </button>
+
+    <aside class="chatbot-panel" id="chatbot-panel" aria-label="HVT AI chatbot" aria-hidden="true">
+        <header class="chatbot-header">
+            <div>
+                <strong>HVT AI Assistant</strong>
+                <span>Hỏi về CLB, AI và công nghệ</span>
+            </div>
+            <button class="chatbot-close" id="chatbot-close" type="button" aria-label="Đóng chatbot">×</button>
+        </header>
+        <div class="chatbot-messages" id="chatbot-messages" role="log" aria-live="polite">
+            <div class="chatbot-message bot">
+                <div class="chatbot-message-bubble">Xin chào! Mình có thể giải đáp câu hỏi về HVT AI Club, AI, công nghệ và các hoạt động của CLB.</div>
+            </div>
+        </div>
+        <form class="chatbot-form" id="chatbot-form">
+            <input id="chatbot-input" type="text" maxlength="1000" autocomplete="off" placeholder="Nhập câu hỏi của bạn..." aria-label="Câu hỏi cho AI">
+            <button id="chatbot-send" type="submit">Gửi</button>
+        </form>
+    </aside>
 
     <a class="button button-primary mobile-apply" href="https://forms.gle/GeAU2zZeuhHW5mfy9" target="_blank" rel="noopener noreferrer">Ứng tuyển ngay ↗</a>
 
@@ -1404,7 +1614,100 @@
         document.addEventListener('keydown', (event) => {
             if (event.key === 'Escape') setMenu(false);
         });
+
+        const chatbotLauncher = document.querySelector('#chatbot-launcher');
+        const chatbotPanel = document.querySelector('#chatbot-panel');
+        const chatbotClose = document.querySelector('#chatbot-close');
+        const chatbotForm = document.querySelector('#chatbot-form');
+        const chatbotInput = document.querySelector('#chatbot-input');
+        const chatbotSend = document.querySelector('#chatbot-send');
+        const chatbotMessages = document.querySelector('#chatbot-messages');
+        const GROQ_CHAT_ENDPOINT = window.HVT_AI_CONFIG?.chatEndpoint || '/api/chat';
+        const GROQ_MODEL = 'llama-3.3-70b-versatile';
+        const chatbotConversation = [{
+            role: 'system',
+            content: `Bạn là trợ lý AI của HVT AI Club - Câu lạc bộ Trí tuệ Nhân tạo tại THPT Chuyên Hoàng Văn Thụ, tỉnh Phú Thọ.
+
+Hãy trả lời bằng tiếng Việt, thân thiện, rõ ràng và ngắn gọn. Bạn có thể giải đáp về mục tiêu, hoạt động, các ban, cách tham gia HVT AI Club và các kiến thức AI/công nghệ cơ bản. Nếu câu hỏi không liên quan hoặc cần thông tin chính thức chưa có trong website, hãy nói rõ giới hạn và khuyên người dùng liên hệ fanpage/email của CLB. Không bịa đặt thông tin, không hướng dẫn gian lận học tập, và nhắc người dùng kiểm chứng thông tin quan trọng.`
+        }];
+        let chatbotBusy = false;
+
+        function setChatbotOpen(open) {
+            chatbotPanel.classList.toggle('is-open', open);
+            chatbotPanel.setAttribute('aria-hidden', String(!open));
+            chatbotLauncher.setAttribute('aria-expanded', String(open));
+            if (open) chatbotInput.focus();
+        }
+
+        function appendChatbotMessage(role, text) {
+            const message = document.createElement('div');
+            message.className = `chatbot-message ${role}`;
+            const bubble = document.createElement('div');
+            bubble.className = 'chatbot-message-bubble';
+            bubble.textContent = text;
+            message.appendChild(bubble);
+            chatbotMessages.appendChild(message);
+            chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+            return bubble;
+        }
+
+        function setChatbotBusy(busy) {
+            chatbotBusy = busy;
+            chatbotInput.disabled = busy;
+            chatbotSend.disabled = busy;
+            chatbotSend.textContent = busy ? '...' : 'Gửi';
+            chatbotPanel.setAttribute('aria-busy', String(busy));
+        }
+
+        chatbotLauncher.addEventListener('click', () => {
+            setChatbotOpen(!chatbotPanel.classList.contains('is-open'));
+        });
+
+        chatbotClose.addEventListener('click', () => setChatbotOpen(false));
+
+        chatbotForm.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const question = chatbotInput.value.trim();
+            if (!question || chatbotBusy) return;
+
+            appendChatbotMessage('user', question);
+            chatbotConversation.push({ role: 'user', content: question });
+            chatbotInput.value = '';
+            setChatbotBusy(true);
+            const loadingBubble = appendChatbotMessage('bot', 'Đang suy nghĩ...');
+
+            try {
+                const recentMessages = [
+                    chatbotConversation[0],
+                    ...chatbotConversation.slice(-10)
+                ];
+                const response = await fetch(GROQ_CHAT_ENDPOINT, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        model: GROQ_MODEL,
+                        messages: recentMessages
+                    })
+                });
+                const data = await response.json().catch(() => ({}));
+                if (!response.ok) {
+                    throw new Error(data?.error?.message || 'Chatbot chưa thể trả lời lúc này.');
+                }
+
+                const answer = data?.choices?.[0]?.message?.content?.trim();
+                if (!answer) throw new Error('Phản hồi từ AI không có nội dung.');
+                loadingBubble.textContent = answer;
+                chatbotConversation.push({ role: 'assistant', content: answer });
+            } catch (error) {
+                console.error('HVT AI chatbot error:', error);
+                loadingBubble.textContent = 'Xin lỗi, chatbot chưa kết nối được. Bạn hãy thử lại sau hoặc liên hệ fanpage của CLB.';
+            } finally {
+                setChatbotBusy(false);
+                chatbotInput.focus();
+            }
+        });
     </script>
 
 
-</body><div id="codex-browser-sidebar-comments-root" style="position: fixed; inset: 0px; pointer-events: none; z-index: 2147483647;"></div></html>
+<div id="codex-browser-sidebar-comments-root" style="position: fixed; inset: 0px; pointer-events: none; z-index: 2147483647;"></div>
+</body></html>
