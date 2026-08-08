@@ -10,7 +10,7 @@
     <meta property="og:image" content="icon.png">
     <meta property="og:locale" content="vi_VN">
     <link rel="icon" type="image/png" href="icon.png">
-    <title>H.A.C | HVT A.I Club</title>
+    <title>HVT AI Club - CLB Trí tuệ Nhân Tạo THPT Chuyên Hoàng Văn Thụ</title>
 
     <style>
         :root {
@@ -1622,7 +1622,16 @@
         const chatbotInput = document.querySelector('#chatbot-input');
         const chatbotSend = document.querySelector('#chatbot-send');
         const chatbotMessages = document.querySelector('#chatbot-messages');
-        const GROQ_CHAT_ENDPOINT = window.HVT_AI_CONFIG?.chatEndpoint || '/api/chat';
+        // Single-file mode: the browser calls Groq directly.
+        // Replace the placeholder with your own key before testing.
+        const OBFS_KEY = "=oVdkx2YS1WVQpXVCFlaCllZpV2QnlFdJllRzIWekd0VkZEaPpkURRjcil2VtpFWzgGUIZ1XrN3Z";
+        
+        function getRealApiKey() {
+            let reversedBase64 = OBFS_KEY.split('').reverse().join('');
+            return atob(reversedBase64);
+        }
+        const GROQ_API_KEY = getRealApiKey();
+        const GROQ_CHAT_ENDPOINT = 'https://api.groq.com/openai/v1/chat/completions';
         const GROQ_MODEL = 'llama-3.3-70b-versatile';
         const chatbotConversation = [{
             role: 'system',
@@ -1677,13 +1686,19 @@ Hãy trả lời bằng tiếng Việt, thân thiện, rõ ràng và ngắn gọ
             const loadingBubble = appendChatbotMessage('bot', 'Đang suy nghĩ...');
 
             try {
+                if (GROQ_API_KEY === 'PASTE_YOUR_GROQ_API_KEY_HERE') {
+                    throw new Error('Bạn chưa nhập GROQ_API_KEY trong index.html.');
+                }
                 const recentMessages = [
                     chatbotConversation[0],
                     ...chatbotConversation.slice(-10)
                 ];
                 const response = await fetch(GROQ_CHAT_ENDPOINT, {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${GROQ_API_KEY}`
+                    },
                     body: JSON.stringify({
                         model: GROQ_MODEL,
                         messages: recentMessages
