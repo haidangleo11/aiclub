@@ -31,29 +31,6 @@ Chúng mình tin rằng AI là công cụ để biến những ý tưởng của
 
 ---
 
-## 🏢 Các ban của CLB
-
-### 💻 Ban Kỹ thuật
-
-Phụ trách toàn bộ các hoạt động liên quan đến công nghệ và phát triển sản phẩm.
-
-**Công việc:**
-
-* Lập trình website và ứng dụng
-* Nghiên cứu AI / Machine Learning
-* Xây dựng các dự án của CLB
-* Quản lý hệ thống kỹ thuật
-* Hỗ trợ các thành viên học lập trình
-
-**Phù hợp với:**
-
-* Yêu thích lập trình và công nghệ
-* Có tư duy logic
-* Muốn tìm hiểu AI
-* Thích xây dựng sản phẩm
-
----
-
 ## 🛠️ Công nghệ
 
 Website hiện được xây dựng với các công nghệ web cơ bản:
