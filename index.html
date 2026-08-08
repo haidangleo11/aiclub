@@ -10,7 +10,7 @@
     <meta property="og:image" content="icon.png">
     <meta property="og:locale" content="vi_VN">
     <link rel="icon" type="image/png" href="icon.png">
-    <title>HVT AI Club - CLB Trí tuệ Nhân Tạo THPT Chuyên Hoàng Văn Thụ</title>
+    <title>H.A.C | HVT A.I Club</title>
 
     <style>
         :root {
@@ -1047,6 +1047,203 @@
             }
         }
 
+        /* Easter egg: day/night theme switch */
+        .theme-control {
+            position: relative;
+            z-index: 20;
+            display: grid;
+            place-items: center;
+            height: 0;
+        }
+
+        .theme-control input {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .theme-toggle {
+            position: relative;
+            display: grid;
+            width: 76px;
+            height: 76px;
+            place-items: center;
+            color: #102a61;
+            background: linear-gradient(145deg, #ffffff, #dceaff);
+            border: 7px solid var(--surface);
+            border-radius: 50%;
+            box-shadow: 0 12px 30px rgba(17, 35, 82, 0.2);
+            cursor: pointer;
+            transform: translateY(-50%);
+            transition: background 0.35s ease, color 0.35s ease, box-shadow 0.35s ease, transform 0.25s ease;
+        }
+
+        .theme-toggle::before {
+            position: absolute;
+            inset: 7px;
+            border: 1px solid rgba(8, 123, 220, 0.28);
+            border-radius: 50%;
+            content: "";
+        }
+
+        .theme-toggle::after {
+            position: absolute;
+            width: 9px;
+            height: 9px;
+            background: #f7ad28;
+            border-radius: 50%;
+            box-shadow: 0 -21px 0 #f7ad28, 0 21px 0 #f7ad28, 21px 0 0 #f7ad28, -21px 0 0 #f7ad28,
+                15px 15px 0 #f7ad28, -15px -15px 0 #f7ad28, 15px -15px 0 #f7ad28, -15px 15px 0 #f7ad28;
+            content: "";
+            transition: opacity 0.25s ease, transform 0.35s ease;
+        }
+
+        .theme-toggle .moon {
+            position: relative;
+            z-index: 1;
+            width: 25px;
+            height: 25px;
+            background: #142b5d;
+            border-radius: 50%;
+            opacity: 0;
+            transform: scale(0.35) rotate(-30deg);
+            transition: opacity 0.25s ease, transform 0.35s ease;
+        }
+
+        .theme-toggle .moon::after {
+            position: absolute;
+            top: -4px;
+            left: 8px;
+            width: 24px;
+            height: 24px;
+            background: #e4efff;
+            border-radius: 50%;
+            content: "";
+        }
+
+        .theme-control input:checked + .theme-toggle {
+            color: #ffffff;
+            background: linear-gradient(145deg, #1e2d55, #0e1730);
+            box-shadow: 0 12px 30px rgba(3, 8, 24, 0.45), 0 0 0 6px rgba(88, 157, 255, 0.12);
+        }
+
+        .theme-control input:checked + .theme-toggle::after {
+            opacity: 0;
+            transform: scale(0.4) rotate(45deg);
+        }
+
+        .theme-control input:checked + .theme-toggle .moon {
+            opacity: 1;
+            transform: scale(1) rotate(0);
+        }
+
+        .theme-toggle:hover {
+            transform: translateY(-50%) scale(1.03);
+        }
+
+        .theme-control input:focus-visible + .theme-toggle {
+            outline: 3px solid var(--yellow);
+            outline-offset: 4px;
+        }
+
+        .easter-egg {
+            position: absolute;
+            right: calc(50% + 52px);
+            display: inline-flex;
+            align-items: center;
+            min-height: 34px;
+            padding: 7px 13px;
+            color: #22477f;
+            background: #ffffff;
+            border: 1px solid rgba(8, 123, 220, 0.22);
+            border-radius: 999px;
+            box-shadow: 0 8px 20px rgba(17, 35, 82, 0.12);
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 0.04em;
+            white-space: nowrap;
+            transform: translateY(-50%);
+        }
+
+        body.dark-mode {
+            color: #dce7ff;
+            background: #0b1222;
+        }
+
+        body.dark-mode .section,
+        body.dark-mode .section-white {
+            background: #0b1222;
+        }
+
+        body.dark-mode .section:nth-of-type(even),
+        body.dark-mode .recruitment-section {
+            background: #101a30;
+        }
+
+        body.dark-mode .section-heading h2,
+        body.dark-mode .content-card h3,
+        body.dark-mode .faq-item summary {
+            color: #f5f8ff;
+        }
+
+        body.dark-mode .section-heading p,
+        body.dark-mode .content-card p,
+        body.dark-mode .role-card p,
+        body.dark-mode .activity-card p,
+        body.dark-mode .step-card p,
+        body.dark-mode .faq-item p {
+            color: #cbd9f3;
+        }
+
+        body.dark-mode .content-card,
+        body.dark-mode .role-card,
+        body.dark-mode .activity-card,
+        body.dark-mode .step-card,
+        body.dark-mode .faq-item {
+            background: #14203a;
+            border-color: #2b4168;
+        }
+
+        body.dark-mode .theme-toggle {
+            border-color: #0b1222;
+        }
+
+        body.dark-mode .easter-egg {
+            color: #8cecff;
+            background: #162746;
+            border-color: rgba(0, 245, 212, 0.3);
+        }
+
+        body.dark-mode .chatbot-panel {
+            background: #14203a;
+        }
+
+        body.dark-mode .chatbot-messages {
+            background: #0f1930;
+        }
+
+        body.dark-mode .chatbot-message.bot .chatbot-message-bubble {
+            color: #e4edff;
+            background: #203358;
+        }
+
+        @media (max-width: 760px) {
+            .theme-toggle {
+                width: 64px;
+                height: 64px;
+                border-width: 5px;
+            }
+
+            .easter-egg {
+                right: calc(50% + 42px);
+                min-height: 30px;
+                padding: 6px 10px;
+                font-size: 0.64rem;
+            }
+        }
+
         /* HVT AI chatbot */
         .chatbot-launcher {
             position: fixed;
@@ -1235,7 +1432,7 @@
     </style>
 </head>
 
-<body>
+<body class="">
     <a class="skip-link" href="#noi-dung">Bỏ qua đến nội dung chính</a>
 
     <header class="site-header">
@@ -1290,6 +1487,14 @@
                 </aside>
             </div>
         </section>
+
+        <div class="theme-control" aria-label="Easter egg chuyển đổi giao diện">
+            <span class="easter-egg">Easter Egg →</span>
+            <input id="theme-switch" type="checkbox" aria-label="Chuyển đổi chế độ tối">
+            <label class="theme-toggle" for="theme-switch" title="Chuyển đổi chế độ tối">
+                <span class="moon" aria-hidden="true"></span>
+            </label>
+        </div>
 
         <section id="gioi-thieu" class="section section-white" aria-labelledby="about-title">
             <div class="container">
@@ -1564,12 +1769,12 @@
         </div>
     </footer>
 
-    <button class="chatbot-launcher" id="chatbot-launcher" type="button" aria-controls="chatbot-panel" aria-expanded="false">
+    <button class="chatbot-launcher" id="chatbot-launcher" type="button" aria-controls="chatbot-panel" aria-expanded="true">
         <span aria-hidden="true">✦</span>
         <span>Hỏi AI</span>
     </button>
 
-    <aside class="chatbot-panel" id="chatbot-panel" aria-label="HVT AI chatbot" aria-hidden="true">
+    <aside class="chatbot-panel is-open" id="chatbot-panel" aria-label="HVT AI chatbot" aria-hidden="false">
         <header class="chatbot-header">
             <div>
                 <strong>HVT AI Assistant</strong>
@@ -1591,6 +1796,18 @@
     <a class="button button-primary mobile-apply" href="https://forms.gle/GeAU2zZeuhHW5mfy9" target="_blank" rel="noopener noreferrer">Ứng tuyển ngay ↗</a>
 
     <script>
+        const themeSwitch = document.querySelector('#theme-switch');
+        const savedTheme = localStorage.getItem('hvt-theme');
+        if (savedTheme === 'dark') {
+            document.body.classList.add('dark-mode');
+            themeSwitch.checked = true;
+        }
+        themeSwitch.addEventListener('change', () => {
+            const dark = themeSwitch.checked;
+            document.body.classList.toggle('dark-mode', dark);
+            localStorage.setItem('hvt-theme', dark ? 'dark' : 'light');
+        });
+
         const menuToggle = document.querySelector('.menu-toggle');
         const siteNav = document.querySelector('#site-nav');
         const navLinks = document.querySelectorAll('#site-nav a');
@@ -1624,13 +1841,7 @@
         const chatbotMessages = document.querySelector('#chatbot-messages');
         // Single-file mode: the browser calls Groq directly.
         // Replace the placeholder with your own key before testing.
-        const OBFS_KEY = "=oVdkx2YS1WVQpXVCFlaCllZpV2QnlFdJllRzIWekd0VkZEaPpkURRjcil2VtpFWzgGUIZ1XrN3Z";
-        
-        function getRealApiKey() {
-            let reversedBase64 = OBFS_KEY.split('').reverse().join('');
-            return atob(reversedBase64);
-        }
-        const GROQ_API_KEY = getRealApiKey();
+        const GROQ_API_KEY = 'PASTE_YOUR_GROQ_API_KEY_HERE';
         const GROQ_CHAT_ENDPOINT = 'https://api.groq.com/openai/v1/chat/completions';
         const GROQ_MODEL = 'llama-3.3-70b-versatile';
         const chatbotConversation = [{
