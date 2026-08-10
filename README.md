@@ -1,21 +1,21 @@
-# 🤖 HVT AI Club
+# 🤖 HVT TECHNOLOGY CLUB
 
-**HVT AI Club** — Câu lạc bộ Trí tuệ Nhân tạo của **THPT Chuyên Hoàng Văn Thụ**, nơi học sinh cùng nhau khám phá, học tập và ứng dụng **Artificial Intelligence (AI)** vào thực tế.
+**HVT TECHNOLOGY CLUB** — Câu lạc bộ Công nghệ của **THPT Chuyên Hoàng Văn Thụ**, nơi học sinh cùng nhau khám phá, học tập và ứng dụng **Công nghệ và Tin học** vào thực tế.
 
-🌐 **Website:** https://haidangleo11.github.io/aiclub/
+🌐 **Website:** https://thptchuyenhvt.github.io/hvt.technology.club/
 
 ---
 
 ## 📌 Giới thiệu
 
-HVT AI Club được thành lập với mục tiêu xây dựng một cộng đồng học sinh yêu thích **AI, công nghệ và lập trình**.
+HVT TECHNOLOGY CLUB được thành lập với mục tiêu xây dựng một cộng đồng học sinh yêu thích **công nghệ và lập trình**.
 
 CLB hướng tới việc giúp học sinh:
 
-* 🧠 Tìm hiểu về Trí tuệ Nhân tạo và các công nghệ mới
+* 🧠 Tìm hiểu về các công nghệ mới
 * 💻 Rèn luyện kỹ năng lập trình và tư duy thuật toán
-* 🤖 Xây dựng các dự án AI thực tế
-* 🏆 Tham gia các cuộc thi công nghệ và AI
+* 🤖 Xây dựng các dự án thực tế
+* 🏆 Tham gia các cuộc thi công nghệ
 * 🤝 Làm việc nhóm và phát triển kỹ năng lãnh đạo
 * 🚀 Biến ý tưởng thành những sản phẩm có ích cho cộng đồng
 
@@ -25,7 +25,7 @@ CLB hướng tới việc giúp học sinh:
 
 > **Learn. Build. Innovate.**
 
-HVT AI Club không chỉ tập trung vào việc học lý thuyết mà hướng tới việc **học thông qua thực hành và xây dựng sản phẩm**.
+HVT TECHNOLOGY CLUB không chỉ tập trung vào việc học lý thuyết mà hướng tới việc **học thông qua thực hành và xây dựng sản phẩm**.
 
 Chúng mình tin rằng AI là công cụ để biến những ý tưởng của học sinh thành hiện thực.
 
@@ -41,7 +41,7 @@ Website hiện được xây dựng với các công nghệ web cơ bản:
 * **Git & GitHub**
 * **GitHub Pages**
 
-Các công nghệ AI và framework khác có thể được tích hợp trong tương lai.
+Các công nghệ và framework khác có thể được tích hợp trong tương lai.
 
 ---
 
@@ -50,6 +50,7 @@ Các công nghệ AI và framework khác có thể được tích hợp trong t�
 ```text
 aiclub/
 │
+├── icon.png
 ├── index.html
 ├── README.md
 ```
@@ -61,13 +62,13 @@ aiclub/
 ### 1. Clone repository
 
 ```bash
-git clone https://github.com/haidangleo11/aiclub.git
+git clone https://github.com/thptchuyenhvt/hvt.technology.club.git
 ```
 
 ### 2. Di chuyển vào thư mục
 
 ```bash
-cd aiclub
+cd hvt.technology.club
 ```
 
 ### 3. Mở website
@@ -84,13 +85,13 @@ Mỗi khi repository được cập nhật, website có thể được cập nh�
 
 **Live Website:**
 
-https://haidangleo11.github.io/aiclub/
+https://thptchuyenhvt.github.io/hvt.technology.club/
 
 ---
 
 ## 🤝 Đóng góp
 
-HVT AI Club hoan nghênh mọi đóng góp nhằm cải thiện website và các dự án của CLB.
+HVT TECHNOLOGY CLUB hoan nghênh mọi đóng góp nhằm cải thiện website và các dự án của CLB.
 
 Quy trình đề xuất:
 
@@ -126,30 +127,29 @@ Một số mục tiêu trong tương lai:
 * [ ] Xây dựng hệ thống quản lý thành viên
 * [ ] Thêm trang dự án
 * [ ] Thêm trang sự kiện
-* [ ] Xây dựng AI Chatbot cho CLB
-* [ ] Tổ chức workshop về AI
-* [ ] Tổ chức các cuộc thi lập trình / AI
+* [ ] Tổ chức workshop về công nghệ
+* [ ] Tổ chức các cuộc thi lập trình, hackathon
 * [ ] Xây dựng các dự án AI phục vụ học sinh
-* [ ] Mở rộng cộng đồng HVT AI Club
+* [ ] Mở rộng cộng đồng HTC
 
 ---
 
 ## 📬 Liên hệ
 
-**HVT AI Club**
+**HVT TECHNOLOGY CLUB**
 THPT Chuyên Hoàng Văn Thụ
 
 🌐 Website: https://haidangleo11.github.io/aiclub/
-📧 Email: clbtrituenhantao.hvt@gmail.com
-📱 Facebook: https://www.facebook.com/profile.php?id=61557457271958
+📧 Email: [empty]
+📱 Facebook: [empty]
 
 ---
 
 ## ⭐ Support
 
-Nếu bạn quan tâm đến **AI, lập trình và công nghệ**, hãy ⭐ repository và theo dõi các hoạt động của **HVT AI Club**!
+Nếu bạn quan tâm đến **lập trình và công nghệ**, hãy ⭐ repository và theo dõi các hoạt động của **HVT TECHNOLOGY CLUB**!
 
-> **HVT AI Club — Learn. Build. Innovate. 🤖**
+> **HVT TECHNOLOGY CLUB — Learn. Build. Innovate. 🤖**
 
 ```
 ```
